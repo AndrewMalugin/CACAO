@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>100% Cacao Powder</title>
+  <meta name="description" content="100% pure cacao powder. 200g for €7. Shipped from Riga, Latvia."/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:   #ffffff;
+      --off:     #f8f7f4;
+      --green-1: #3d2b1f; /* Cacao Brown */
+      --green-2: #5c4033; 
+      --green-3: #7dbf7d; /* Lighter Green */
+      --green-4: #a8dba8; 
+      --green-5: #c4dcc4;
+      --green-6: #f2f7f2;
+      --gray:    #888;
+      --border:  #e0e0d8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--green-1);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--green-1);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      padding: 0.35rem 0.7rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--gray);
+      transition: all 0.2s;
+    }
+    .lang-btn.active { background: var(--green-1); color: var(--white); }
+    .lang-btn:not(.active):hover { background: var(--green-6); color: var(--green-1); }
+
+    .nav-cta {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green-1);
+      text-decoration: none;
+      border-bottom: 1px solid var(--green-1);
+      padding-bottom: 0.1rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-cta:hover { color: var(--green-3); border-color: var(--green-3); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 60vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 5rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--green-3);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: up 0.7s 0.2s forwards;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 5.5vw, 6.5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      color: var(--green-1);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: up 0.7s 0.35s forwards;
+    }
+    h1 em { font-style: italic; color: var(--green-3); }
+
+    .hero-sub {
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--green-4);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: up 0.7s 0.45s forwards;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--green-2);
+      max-width: 380px;
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      animation: up 0.7s 0.55s forwards;
+    }
+
+    .hero-buy {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      opacity: 0;
+      animation: up 0.7s 0.7s forwards;
+    }
+
+    .btn-main {
+      background: var(--green-1);
+      color: var(--white);
+      border: none;
+      padding: 0.9rem 2.5rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-main:hover { background: var(--green-3); transform: translateY(-2px); }
+
+    .hero-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--green-1);
+      line-height: 1;
+    }
+    .hero-price small {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    /* Hero Right - Updated Image Name */
+    .hero-right {
+      background-image: url('hero.png');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    /* ── STRIP ── */
+    .strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+    }
+
+    .strip-inner {
+      display: flex;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .strip-item {
+      flex: 1;
+      padding: 2rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-right: 1px solid var(--border);
+    }
+    .strip-item:last-child { border-right: none; }
+
+    .strip-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+    .strip-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green-1);
+      margin-bottom: 0.2rem;
+      font-weight: 500;
+    }
+
+    .strip-text {
+      font-size: 0.75rem;
+      color: var(--gray);
+      line-height: 1.4;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 8rem 4rem;
+      gap: 8rem;
+      align-items: center;
+    }
+
+    .section-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--green-3);
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--green-1);
+      margin-bottom: 1.5rem;
+    }
+    h2 em { font-style: italic; color: var(--green-3); }
+
+    .body-text {
+      font-size: 0.92rem;
+      line-height: 1.95;
+      color: var(--green-2);
+      margin-bottom: 1.2rem;
+    }
+
+    /* About Visual - Updated Image Name */
+    .about-visual {
+      background-image: url('about.png');
+      background-size: cover;
+      background-position: center;
+      border: 1px solid var(--border);
+      padding-bottom: 120%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── ORDER ── */
+    .order {
+      background-image: url('beans.png');
+      background-size: cover;
+      background-position: center;
+      padding: 8rem 4rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .order::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(30, 15, 5, 0.72);
+      z-index: 0;
+    }
+
+    .order > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .order-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--green-3);
+      margin-bottom: 1.2rem;
+    }
+
+    .order h2 {
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+    .order h2 em { color: var(--green-3); }
+
+    .order-sub {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 4rem;
+      letter-spacing: 0.05em;
+    }
+
+    .order-card {
+      max-width: 400px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 3rem 2.5rem;
+    }
+
+    .order-product {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .order-weight {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green-3);
+      margin-bottom: 2rem;
+    }
+
+    .order-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.12);
+      margin: 0 auto 2rem;
+    }
+
+    .order-price-big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .order-price-note {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-order {
+      background: var(--white);
+      color: var(--green-1);
+      border: none;
+      width: 100%;
+      padding: 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+      margin-bottom: 1rem;
+    }
+    .btn-order:hover { background: var(--green-6); transform: translateY(-2px); }
+
+    .order-bank {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.25);
+      line-height: 1.8;
+    }
+    .order-bank a { color: var(--green-3); text-decoration: none; }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 7rem 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-list { list-style: none; margin-top: 1.5rem; }
+    .contact-list li {
+      font-size: 0.85rem;
+      color: var(--green-2);
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 1.5rem;
+      line-height: 1.5;
+    }
+    .contact-list li:last-child { border-bottom: none; }
+
+    .contact-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green-3);
+      min-width: 65px;
+      padding-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .bank-block {
+      background: var(--off);
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+
+    .bank-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--green-3);
+      margin-bottom: 1.5rem;
+    }
+
+    .bank-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .bank-row:last-child { border-bottom: none; }
+
+    .bank-key {
+      font-size: 0.58rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--green-3);
+    }
+
+    .bank-val {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--green-1);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--gray);
+    }
+
+    .footer-right {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes up {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-right { gap: 1rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 5rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-right { height: 300px; }
+      .strip-inner { flex-wrap: wrap; }
+      .strip-item { min-width: 50%; border-bottom: 1px solid var(--border); }
+      .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      .order { padding: 5rem 1.5rem; }
+      .contact { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">100% Cacao</span>
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('lv')">LV</button>
+    </div>
+    <a href="#order" class="nav-cta" data-en="Order — €7" data-lv="Pasūtīt — €7">Order — €7</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="eyebrow" data-en="Pure · Raw · Unprocessed" data-lv="Tīrs · Neapstrādāts · Dabisks">Pure · Raw · Unprocessed</p>
+    <h1>100%<br><em>Cacao</em><br><span data-en="Powder" data-lv="Pulveris">Powder</span></h1>
+    <p class="hero-sub" data-en="Single Ingredient. Nothing Else." data-lv="Viens sastāvdaļa. Nekas cits.">Single Ingredient. Nothing Else.</p>
+    <p class="hero-desc" data-en="Just pure cacao powder — no additives, no sugar, no processing. Rich in magnesium, antioxidants, and natural flavour. One product. One price." data-lv="Tikai tīrs kakao pulveris — bez piedevām, bez cukura, bez apstrādes. Bagāts ar magniju, antioksidantiem un dabīgu garšu. Viens produkts. Viena cena.">Just pure cacao powder — no additives, no sugar, no processing. Rich in magnesium, antioxidants, and natural flavour. One product. One price.</p>
+    <div class="hero-buy">
+      <a href="#order" class="btn-main" data-en="Order Now" data-lv="Pasūtīt Tagad">Order Now</a>
+      <div class="hero-price">
+        <small data-en="200g · One price" data-lv="200g · Viena cena">200g · One price</small>
+        €7
+      </div>
+    </div>
+  </div>
+  <div class="hero-right"></div>
+</section>
+
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item">
+      <div class="strip-icon">🌿</div>
+      <div class="strip-text-wrap">
+        <p class="strip-title" data-en="100% Natural" data-lv="100% Dabisks">100% Natural</p>
+        <p class="strip-text" data-en="Zero additives or fillers" data-lv="Bez piedevām vai pildvielām">Zero additives or fillers</p>
+      </div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon">✦</div>
+      <div class="strip-text-wrap">
+        <p class="strip-title" data-en="Single Ingredient" data-lv="Viens Sastāvdaļa">Single Ingredient</p>
+        <p class="strip-text" data-en="Just pure cacao, nothing else" data-lv="Tikai tīrs kakao, nekas cits">Just pure cacao, nothing else</p>
+      </div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon">📦</div>
+      <div class="strip-text-wrap">
+        <p class="strip-title" data-en="200g Package" data-lv="200g Iepakojums">200g Package</p>
+        <p class="strip-text" data-en="One size, one fair price" data-lv="Viens izmērs, viena godīga cena">One size, one fair price</p>
+      </div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon">🚚</div>
+      <div class="strip-text-wrap">
+        <p class="strip-title" data-en="Ships from Riga" data-lv="Piegāde no Rīgas">Ships from Riga</p>
+        <p class="strip-text" data-en="Fast delivery across Baltics" data-lv="Ātra piegāde visā Baltijā">Fast delivery across Baltics</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="about">
+  <div class="about-text">
+    <p class="section-tag" data-en="Our Philosophy" data-lv="Mūsu Filozofija">Our Philosophy</p>
+    <h2 data-en="Nothing added.<br><em>Nothing taken away.</em>" data-lv="Nekas nav pievienots.<br><em>Nekas nav atņemts.</em>">Nothing added.<br><em>Nothing taken away.</em></h2>
+    <p class="body-text" data-en="We believe cacao is one of nature's most powerful foods. Rich in antioxidants, magnesium, and natural compounds that nourish your body and lift your mood." data-lv="Mēs uzskatām, ka kakao ir viens no dabas spēcīgākajiem pārtikas produktiem. Bagāts ar antioksidantiem, magniju un dabīgiem savienojumiem, kas baro jūsu ķermeni un uzlabo garastāvokli.">We believe cacao is one of nature's most powerful foods. Rich in antioxidants, magnesium, and natural compounds that nourish your body and lift your mood.</p>
+    <p class="body-text" data-en="Our powder is made from whole cacao beans — cold processed to preserve every nutrient. Use it in smoothies, baking, warm drinks, or anywhere you want genuine chocolate depth." data-lv="Mūsu pulveris tiek ražots no veseliem kakao pupiņām — auksti apstrādāts, lai saglabātu katru uzturvielu. Izmantojiet to smūtijos, cepšanā, siltajos dzērienos.">Our powder is made from whole cacao beans — cold processed to preserve every nutrient. Use it in smoothies, baking, warm drinks, or anywhere you want genuine chocolate depth.</p>
+    <p class="body-text" data-en="Simple. Pure. Real." data-lv="Vienkāršs. Tīrs. Īsts.">Simple. Pure. Real.</p>
+  </div>
+  <div class="about-visual"></div>
+</section>
+
+<section class="order" id="order">
+  <p class="order-tag" data-en="Ready to Order" data-lv="Gatavs Pasūtīt">Ready to Order</p>
+  <h2 data-en="One Product.<br><em>One Price.</em>" data-lv="Viens Produkts.<br><em>Viena Cena.</em>">One Product.<br><em>One Price.</em></h2>
+  <p class="order-sub" data-en="Direct bank transfer · Fast shipping across the Baltics" data-lv="Tiešs bankas pārskaitījums · Ātra piegāde visā Baltijā">Direct bank transfer · Fast shipping across the Baltics</p>
+
+  <div class="order-card">
+    <div class="order-product" data-en="100% Cacao Powder" data-lv="100% Kakao Pulveris">100% Cacao Powder</div>
+    <div class="order-weight" data-en="200 grams" data-lv="200 grami">200 grams</div>
+    <div class="order-divider"></div>
+    <div class="order-price-big">€7</div>
+    <div class="order-price-note" data-en="Per package · VAT included" data-lv="Par iepakojumu · PVN iekļauts">Per package · VAT included</div>
+    <button class="btn-order" data-en="Order Now" data-lv="Pasūtīt Tagad" onclick="showOrder()">Order Now</button>
+    <p class="order-bank">
+      <span data-en="Pay by bank transfer to" data-lv="Maksājiet ar bankas pārskaitījumu uz">Pay by bank transfer to</span>
+      IBAN: LT92 3250 0193 5744 2476<br>
+      <span data-en="Then send your address to" data-lv="Tad nosūtiet savu adresi uz">Then send your address to</span>
+      <a href="mailto:a.malugin.co@gmail.com">a.malugin.co@gmail.com</a>
+    </p>
+  </div>
+</section>
+
+<section class="contact">
+  <div>
+    <p class="section-tag" data-en="Contact" data-lv="Kontakti">Contact</p>
+    <h2 data-en="Get in<br><em>Touch</em>" data-lv="Sazinieties<br><em>Ar Mums</em>">Get in<br><em>Touch</em></h2>
+    <p class="body-text" data-en="Questions about the product or your order? We're happy to help." data-lv="Jautājumi par produktu vai pasūtījumu? Mēs priecāsimies palīdzēt.">Questions about the product or your order? We're happy to help.</p>
+    <ul class="contact-list">
+      <li><span class="contact-label" data-en="Company" data-lv="Uzņēmums">Company</span> PENNY SIA</li>
+      <li><span class="contact-label" data-en="Address" data-lv="Adrese">Address</span> Brīvības 111-3, LV-1001, Rīga, Latvija</li>
+      <li><span class="contact-label" data-en="Phone" data-lv="Tālrunis">Phone</span> <a href="tel:+37126300157" style="color:inherit;text-decoration:none;">+371 26300157</a></li>
+      <li><span class="contact-label" data-en="Email" data-lv="E-pasts">Email</span> <a href="mailto:a.malugin.co@gmail.com" style="color:var(--green-3);text-decoration:none;">a.malugin.co@gmail.com</a></li>
+      <li><span class="contact-label">VAT</span> LV40003555096</li>
+    </ul>
+  </div>
+  <div>
+    <div class="bank-block">
+      <p class="bank-title" data-en="Bank Details" data-lv="Bankas Rekvizīti">Bank Details</p>
+      <div class="bank-row"><span class="bank-key" data-en="Bank" data-lv="Banka">Bank</span><span class="bank-val">Revolut Bank UAB</span></div>
+      <div class="bank-row"><span class="bank-key">BIC</span><span class="bank-val">REVOLT21</span></div>
+      <div class="bank-row"><span class="bank-key">IBAN</span><span class="bank-val" style="font-size:0.8rem;">LT92 3250 0193 5744 2476</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">100% Cacao Powder · PENNY SIA</span>
+  <span class="footer-right">VAT: LV40003555096 · © 2026</span>
+</footer>
+
+<script>
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const text = el.getAttribute('data-' + lang);
+      if (text) el.innerHTML = text;
+    });
+    document.documentElement.lang = lang;
+  }
+
+  function showOrder() {
+    const msgs = {
+      en: 'To order, please transfer €7 to:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nReference: Cacao Order\n\nThen email your delivery address to:\na.malugin.co@gmail.com\nPhone: +371 26300157',
+      lv: 'Lai pasūtītu, lūdzu pārskaitiet €7 uz:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nMaksājuma mērķis: Kakao pasūtījums\n\nPēc tam nosūtiet piegādes adresi uz:\na.malugin.co@gmail.com\nTālr: +371 26300157'
+    };
+    alert(msgs[currentLang]);
+  }
+</script>
+
+</body>
+</html>
