@@ -65,12 +65,33 @@
   }
   .nav-links a:hover { border-color: var(--terra); color: var(--terra); }
 
+  .lang-switch { position: relative; display: flex; align-items: center; }
+  .lang-globe-btn {
+    background: transparent; border: none; color: var(--ink); display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.7rem; font-family: 'Poppins', sans-serif; font-weight: 500; cursor: pointer;
+    padding: 0.25rem 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.2s;
+  }
+  .lang-globe-btn:hover { color: var(--terra); }
+  .lang-globe-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+  .lang-dropdown {
+    display: none; position: absolute; top: calc(100% + 4px); right: 0; background: var(--paper);
+    border: 2px solid var(--ink); min-width: 90px; z-index: 200; overflow: hidden; border-radius: 8px;
+  }
+  .lang-dropdown.open { display: block; }
+  .lang-option {
+    display: block; width: 100%; background: transparent; border: none; padding: 0.6rem 1.1rem; text-align: left;
+    font-size: 0.7rem; font-family: 'Poppins', sans-serif; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink); cursor: pointer; transition: background 0.15s;
+  }
+  .lang-option:hover { background: var(--cream); }
+  .lang-option.active { color: var(--terra); }
+
   .hero { position: relative; z-index: 5; text-align: center; padding: 3rem 2rem 2rem; }
   .sun-wrap { width: min(320px, 60vw); margin: 0 auto; }
   .eyebrow { font-size: 0.75rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--olive-dk); margin: 1.5rem 0; }
-  h1.brand {
-    font-size: clamp(3.5rem, 10vw, 7rem); color: var(--maroon); line-height: 0.9;
-    text-shadow: 4px 4px 0 var(--sun);
+  .principles {
+    font-size: clamp(1.1rem, 2.6vw, 1.6rem); color: var(--maroon); line-height: 1.4;
+    letter-spacing: 0.02em; margin-top: 0.5rem;
   }
   .hero-sub { max-width: 560px; margin: 2rem auto 0; font-size: 1.1rem; font-weight: 300; color: var(--ink-soft); line-height: 1.65; }
 
@@ -122,47 +143,29 @@
 </div>
 
 <nav>
-  <span class="nav-logo groovy"><img src="logo.png" alt="Hippy logo"/>hippy</span>
+  <span class="nav-logo groovy"><img src="logo.png" alt="Hippy logo"/></span>
   <div class="nav-links">
-    <a href="cacao.html">Cacao</a>
-    <a href="rice.html">Wild Rice</a>
-    <a href="contacts.html">Contact</a>
+    <a href="cacao.html" data-en="Cacao" data-lv="Kakao" data-ru="Какао">Cacao</a>
+    <a href="rice.html" data-en="Wild Rice" data-lv="Savvaļas Rīsi" data-ru="Дикий Рис">Wild Rice</a>
+    <a href="contacts.html" data-en="Contact" data-lv="Kontakti" data-ru="Контакты">Contact</a>
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-globe-btn" onclick="toggleLangDropdown()" id="langGlobeBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/><path d="M12 2c3.5 3 5.5 6.5 5.5 10s-2 7-5.5 10M12 2c-3.5 3-5.5 6.5-5.5 10s2 7 5.5 10"/><path d="M4.5 7.5h15M4.5 16.5h15"/></svg>
+        <span id="currentLangLabel">LV</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option" onclick="setLang('lv')">LV</button>
+        <button class="lang-option" onclick="setLang('en')">EN</button>
+        <button class="lang-option" onclick="setLang('ru')">RU</button>
+      </div>
+    </div>
   </div>
 </nav>
 
 <section class="hero">
-  <div class="sun-wrap">
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#2e1c12" stroke-width="2.5">
-        <path d="M100 4 L108 34 L100 46 L92 34 Z" fill="#d99a2b"/>
-        <path d="M100 196 L108 166 L100 154 L92 166 Z" fill="#d99a2b"/>
-        <path d="M4 100 L34 92 L46 100 L34 108 Z" fill="#d99a2b"/>
-        <path d="M196 100 L166 108 L154 100 L166 92 Z" fill="#d99a2b"/>
-        <path d="M30 30 L54 42 L58 54 L46 50 Z" fill="#d99a2b"/>
-        <path d="M170 170 L146 158 L142 146 L154 150 Z" fill="#d99a2b"/>
-        <path d="M170 30 L146 42 L142 54 L154 50 Z" fill="#d99a2b"/>
-        <path d="M30 170 L54 158 L58 146 L46 150 Z" fill="#d99a2b"/>
-        <circle cx="100" cy="100" r="62" fill="#e8b93a"/>
-        <circle cx="100" cy="100" r="62"/>
-        <circle cx="100" cy="100" r="50" stroke-dasharray="3 5" opacity="0.6"/>
-      </g>
-      <g stroke="#2e1c12" stroke-width="2.5" stroke-linecap="round" fill="none">
-        <path d="M76 92 Q80 84 88 92"/>
-        <path d="M112 92 Q120 84 124 92"/>
-        <circle cx="82" cy="94" r="3" fill="#2e1c12" stroke="none"/>
-        <circle cx="118" cy="94" r="3" fill="#2e1c12" stroke="none"/>
-        <path d="M84 116 Q100 128 116 116"/>
-        <path d="M92 106 Q100 110 108 106" opacity="0.5"/>
-      </g>
-      <g fill="none" stroke="#8c2f16" stroke-width="1.5" opacity="0.55">
-        <path d="M65 70 Q60 100 70 130"/>
-        <path d="M135 70 Q140 100 130 130"/>
-      </g>
-    </svg>
-  </div>
-  <p class="eyebrow">Riga, Latvia · Naturally grown</p>
-  <h1 class="brand groovy">hippy</h1>
-  <p class="hero-sub">Two things we believe in: real ingredients, and nothing else. Explore our cacao and wild rice — grown honestly, shipped from Riga.</p>
+  <p class="eyebrow" data-en="Riga, Latvia · Naturally grown" data-lv="Rīga, Latvija · Dabiski audzēts" data-ru="Рига, Латвия · Натурально выращено">Riga, Latvia · Naturally grown</p>
+  <p class="principles groovy" data-en="Simplicity · Openness · Minimalism · Simple things matter" data-lv="Vienkāršība · Atvērtība · Minimālisms · Vienkāršas lietas ir svarīgas" data-ru="Простота · Открытость · Минимализм · Простые вещи важны">Simplicity · Openness · Minimalism · Simple things matter</p>
+  <p class="hero-sub" data-en="Two things we believe in: real ingredients, and nothing else. Explore our cacao and wild rice — grown honestly, shipped from Riga." data-lv="Mēs ticam divām lietām: īstām sastāvdaļām un neko citam. Iepazīstiet mūsu kakao un savvaļas rīsus — godīgi audzētus, sūtītus no Rīgas." data-ru="Мы верим в две вещи: настоящие ингредиенты и ничего лишнего. Познакомьтесь с нашим какао и диким рисом — честно выращенными, отправленными из Риги.">Two things we believe in: real ingredients, and nothing else. Explore our cacao and wild rice — grown honestly, shipped from Riga.</p>
 </section>
 
 <div class="cards">
@@ -181,9 +184,9 @@
       <path d="M34 29 Q37 26 39 29" stroke="#fbf3df"/>
       <path d="M27 37 Q32 41 37 37" stroke="#fbf3df"/>
     </svg>
-    <div class="card-title groovy">Cacao</div>
-    <p class="card-desc">100% pure cacao powder. No additives, no sugar — just the bean, the way nature made it.</p>
-    <span class="card-cta">Shop Cacao</span>
+    <div class="card-title groovy" data-en="Cacao" data-lv="Kakao" data-ru="Какао">Cacao</div>
+    <p class="card-desc" data-en="100% pure cacao powder. No additives, no sugar — just the bean, the way nature made it." data-lv="100% tīrs kakao pulveris. Bez piedevām, bez cukura — tikai pupiņa tā, kā to radījusi daba." data-ru="100% чистый какао-порошок. Без добавок, без сахара — только боб таким, каким его создала природа.">100% pure cacao powder. No additives, no sugar — just the bean, the way nature made it.</p>
+    <span class="card-cta" data-en="Shop Cacao" data-lv="Iepirkties" data-ru="В магазин">Shop Cacao</span>
   </a>
   <a href="rice.html" class="card rice">
     <svg class="card-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3c4720" stroke-width="2">
@@ -193,15 +196,50 @@
       <path d="M20 34 C16 40 16 46 22 52" fill="#a8bf7a"/>
       <path d="M44 34 C48 40 48 46 42 52" fill="#a8bf7a"/>
     </svg>
-    <div class="card-title groovy">Wild Rice</div>
-    <p class="card-desc">Earthy, nutty, wholesome. Naturally grown wild rice for a wholesome plate.</p>
-    <span class="card-cta">Shop Wild Rice</span>
+    <div class="card-title groovy" data-en="Wild Rice" data-lv="Savvaļas Rīsi" data-ru="Дикий Рис">Wild Rice</div>
+    <p class="card-desc" data-en="Earthy, nutty, wholesome. Naturally grown wild rice for a wholesome plate." data-lv="Zemiski, ar rieksta garšu, veselīgi. Dabiski audzēti savvaļas rīsi veselīgam ēdienam." data-ru="Землистый, ореховый, полезный. Натурально выращенный дикий рис для полезного блюда.">Earthy, nutty, wholesome. Naturally grown wild rice for a wholesome plate.</p>
+    <span class="card-cta" data-en="Shop Wild Rice" data-lv="Iepirkties" data-ru="В магазин">Shop Wild Rice</span>
   </a>
 </div>
 
 <footer>
   Hippy · PENNY SIA · Rīga, Latvija · <a href="mailto:hippy24co@gmail.com">hippy24co@gmail.com</a>
 </footer>
+
+<script>
+  let currentLang = 'lv';
+
+  function toggleLangDropdown() {
+    document.getElementById('langDropdown').classList.toggle('open');
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!document.getElementById('langSwitch').contains(e.target)) {
+      document.getElementById('langDropdown').classList.remove('open');
+    }
+  });
+
+  function setLang(lang, skipSave) {
+    currentLang = lang;
+    if (!skipSave) { try { localStorage.setItem('hippy_lang', lang); } catch(e) {} }
+    document.getElementById('langDropdown').classList.remove('open');
+    document.getElementById('currentLangLabel').textContent = lang.toUpperCase();
+    document.querySelectorAll('.lang-option').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const text = el.getAttribute('data-' + lang) || el.getAttribute('data-en');
+      if (text) el.innerHTML = text;
+    });
+    document.documentElement.lang = lang;
+  }
+
+  (function() {
+    let saved = 'lv';
+    try { saved = localStorage.getItem('hippy_lang') || 'lv'; } catch(e) {}
+    setLang(saved, true);
+  })();
+</script>
 
 </body>
 </html>
