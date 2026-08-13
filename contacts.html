@@ -46,6 +46,27 @@
   }
   .nav-links a:hover { border-color: var(--terra); color: var(--terra); }
 
+  .lang-switch { position: relative; display: flex; align-items: center; }
+  .lang-globe-btn {
+    background: transparent; border: none; color: var(--ink); display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.7rem; font-family: 'Poppins', sans-serif; font-weight: 500; cursor: pointer;
+    padding: 0.25rem 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.2s;
+  }
+  .lang-globe-btn:hover { color: var(--terra); }
+  .lang-globe-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+  .lang-dropdown {
+    display: none; position: absolute; top: calc(100% + 4px); right: 0; background: var(--paper);
+    border: 2px solid var(--ink); min-width: 90px; z-index: 200; overflow: hidden; border-radius: 8px;
+  }
+  .lang-dropdown.open { display: block; }
+  .lang-option {
+    display: block; width: 100%; background: transparent; border: none; padding: 0.6rem 1.1rem; text-align: left;
+    font-size: 0.7rem; font-family: 'Poppins', sans-serif; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink); cursor: pointer; transition: background 0.15s;
+  }
+  .lang-option:hover { background: var(--cream); }
+  .lang-option.active { color: var(--terra); }
+
   main {
     flex: 1;
     display: flex;
@@ -97,24 +118,70 @@
 <nav>
   <span class="nav-logo groovy">hippy</span>
   <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="cacao.html">Cacao</a>
-    <a href="rice.html">Wild Rice</a>
+    <a href="index.html" data-en="Home" data-lv="Sākums" data-ru="Главная">Home</a>
+    <a href="cacao.html" data-en="Cacao" data-lv="Kakao" data-ru="Какао">Cacao</a>
+    <a href="rice.html" data-en="Wild Rice" data-lv="Savvaļas Rīsi" data-ru="Дикий Рис">Wild Rice</a>
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-globe-btn" onclick="toggleLangDropdown()" id="langGlobeBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/><path d="M12 2c3.5 3 5.5 6.5 5.5 10s-2 7-5.5 10M12 2c-3.5 3-5.5 6.5-5.5 10s2 7 5.5 10"/><path d="M4.5 7.5h15M4.5 16.5h15"/></svg>
+        <span id="currentLangLabel">LV</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option" onclick="setLang('lv')">LV</button>
+        <button class="lang-option" onclick="setLang('en')">EN</button>
+        <button class="lang-option" onclick="setLang('ru')">RU</button>
+      </div>
+    </div>
   </div>
 </nav>
 
 <main>
   <div class="card">
-    <h1 class="groovy">Contacts</h1>
-    <div class="row"><span class="label">Company</span><span class="value">PENNY SIA</span></div>
-    <div class="row"><span class="label">Address</span><span class="value">Brīvības 111-3, LV-1001, Rīga, Latvija</span></div>
-    <div class="row"><span class="label">Phone</span><span class="value"><a href="tel:+37126300157">+371 26300157</a></span></div>
-    <div class="row"><span class="label">Email</span><span class="value"><a href="mailto:hippy24co@gmail.com">hippy24co@gmail.com</a></span></div>
-    <div class="row"><span class="label">VAT</span><span class="value">LV40003555096</span></div>
+    <h1 class="groovy" data-en="Contacts" data-lv="Kontakti" data-ru="Контакты">Contacts</h1>
+    <div class="row"><span class="label" data-en="Company" data-lv="Uzņēmums" data-ru="Компания">Company</span><span class="value">PENNY SIA</span></div>
+    <div class="row"><span class="label" data-en="Address" data-lv="Adrese" data-ru="Адрес">Address</span><span class="value">Brīvības 111-3, LV-1001, Rīga, Latvija</span></div>
+    <div class="row"><span class="label" data-en="Phone" data-lv="Tālrunis" data-ru="Телефон">Phone</span><span class="value"><a href="tel:+37126300157">+371 26300157</a></span></div>
+    <div class="row"><span class="label" data-en="Email" data-lv="E-pasts" data-ru="Эл. почта">Email</span><span class="value"><a href="mailto:hippy24co@gmail.com">hippy24co@gmail.com</a></span></div>
+    <div class="row"><span class="label" data-en="VAT" data-lv="PVN Nr." data-ru="Номер НДС">VAT</span><span class="value">LV40003555096</span></div>
   </div>
 </main>
 
 <footer>Hippy · PENNY SIA · © 2026</footer>
+
+<script>
+  let currentLang = 'lv';
+
+  function toggleLangDropdown() {
+    document.getElementById('langDropdown').classList.toggle('open');
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!document.getElementById('langSwitch').contains(e.target)) {
+      document.getElementById('langDropdown').classList.remove('open');
+    }
+  });
+
+  function setLang(lang, skipSave) {
+    currentLang = lang;
+    if (!skipSave) { try { localStorage.setItem('hippy_lang', lang); } catch(e) {} }
+    document.getElementById('langDropdown').classList.remove('open');
+    document.getElementById('currentLangLabel').textContent = lang.toUpperCase();
+    document.querySelectorAll('.lang-option').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const text = el.getAttribute('data-' + lang) || el.getAttribute('data-en');
+      if (text) el.innerHTML = text;
+    });
+    document.documentElement.lang = lang;
+  }
+
+  (function() {
+    let saved = 'lv';
+    try { saved = localStorage.getItem('hippy_lang') || 'lv'; } catch(e) {}
+    setLang(saved, true);
+  })();
+</script>
 
 </body>
 </html>
