@@ -51,6 +51,28 @@
   }
   .nav-right a:hover { color: var(--green); border-color: var(--green); }
 
+  .lang-switch { position: relative; display: flex; align-items: center; }
+  .lang-globe-btn {
+    background: transparent; border: none; color: var(--dark); display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.7rem; font-family: 'Inter', sans-serif; font-weight: 500; cursor: pointer;
+    padding: 0.25rem 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.2s;
+  }
+  .lang-globe-btn:hover { color: var(--green); }
+  .lang-globe-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+  .lang-dropdown {
+    display: none; position: absolute; top: calc(100% + 4px); right: 0; background: var(--white);
+    border: 1px solid var(--border); min-width: 90px; z-index: 200; overflow: hidden;
+  }
+  .lang-dropdown.open { display: block; }
+  .lang-option {
+    display: block; width: 100%; background: transparent; border: none; padding: 0.6rem 1.1rem; text-align: left;
+    font-size: 0.7rem; font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--dark); cursor: pointer; transition: background 0.15s; border-bottom: 1px solid var(--border);
+  }
+  .lang-option:last-child { border-bottom: none; }
+  .lang-option:hover { background: var(--cream); }
+  .lang-option.active { color: var(--green); }
+
   .hero { min-height: 60vh; display: grid; grid-template-columns: 55fr 45fr; padding-top: 72px; }
   .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem 6rem 5rem; border-right: 1px solid var(--border); }
   .hero-right { background: linear-gradient(160deg, var(--tan) 0%, var(--green) 100%); }
@@ -122,23 +144,34 @@
 <body>
 
 <nav>
-  <span class="nav-logo">Wild Rice</span>
+  <span class="nav-logo" data-en="Wild Rice" data-lv="Savvaļas Rīsi" data-ru="Дикий Рис">Wild Rice</span>
   <div class="nav-right">
-    <a href="index.html">Home</a>
-    <a href="cacao.html">Cacao</a>
-    <a href="contacts.html">Contact</a>
-    <a href="#order">Shop Now</a>
+    <a href="index.html" data-en="Home" data-lv="Sākums" data-ru="Главная">Home</a>
+    <a href="cacao.html" data-en="Cacao" data-lv="Kakao" data-ru="Какао">Cacao</a>
+    <a href="contacts.html" data-en="Contact" data-lv="Kontakti" data-ru="Контакты">Contact</a>
+    <a href="#order" data-en="Shop Now" data-lv="Apskatīt produktus" data-ru="Смотреть товары">Shop Now</a>
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-globe-btn" onclick="toggleLangDropdown()" id="langGlobeBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/><path d="M12 2c3.5 3 5.5 6.5 5.5 10s-2 7-5.5 10M12 2c-3.5 3-5.5 6.5-5.5 10s2 7 5.5 10"/><path d="M4.5 7.5h15M4.5 16.5h15"/></svg>
+        <span id="currentLangLabel">LV</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option" onclick="setLang('lv')">LV</button>
+        <button class="lang-option" onclick="setLang('en')">EN</button>
+        <button class="lang-option" onclick="setLang('ru')">RU</button>
+      </div>
+    </div>
   </div>
 </nav>
 
 <section class="hero">
   <div class="hero-left">
-    <p class="eyebrow">Earthy · Wholesome · Natural</p>
-    <h1>Wild<br><em>Rice</em></h1>
-    <p class="hero-sub">Grown wild.<br>Kept honest.</p>
-    <p class="hero-desc">Naturally harvested wild rice — nutty, earthy, and full of texture. High in fibre and protein, and gluten-free by nature.</p>
+    <p class="eyebrow" data-en="Earthy · Wholesome · Natural" data-lv="Zemes · Vesels · Dabisks" data-ru="Земляной · Полезный · Натуральный">Earthy · Wholesome · Natural</p>
+    <h1 data-en="Wild<br><em>Rice</em>" data-lv="Savvaļas<br><em>rīsi</em>" data-ru="Дикий<br><em>рис</em>">Wild<br><em>Rice</em></h1>
+    <p class="hero-sub" data-en="Grown wild.<br>Kept honest." data-lv="Audzēti savvaļā.<br>Godīgi saglabāti." data-ru="Выращен в дикой природе.<br>Честно сохранён.">Grown wild.<br>Kept honest.</p>
+    <p class="hero-desc" data-en="Naturally harvested wild rice — nutty, earthy, and full of texture. High in fibre and protein, and gluten-free by nature." data-lv="Dabiski novākti savvaļas rīsi — rieksta garšas, zemiski un ar bagātīgu tekstūru. Bagāti ar šķiedrvielām un olbaltumvielām, dabiski bez lipekļa." data-ru="Дикий рис натурального сбора — ореховый вкус, землистые нотки и насыщенная текстура. Богат клетчаткой и белком, естественно без глютена.">Naturally harvested wild rice — nutty, earthy, and full of texture. High in fibre and protein, and gluten-free by nature.</p>
     <div class="hero-buy">
-      <a href="#order" class="btn-main">Shop Now</a>
+      <a href="#order" class="btn-main" data-en="Shop Now" data-lv="Apskatīt produktus" data-ru="Смотреть товары">Shop Now</a>
     </div>
   </div>
   <div class="hero-right"></div>
@@ -149,29 +182,29 @@
     <div class="strip-item">
       <div class="strip-icon">🌾</div>
       <div>
-        <p class="strip-title">Naturally Grown</p>
-        <p class="strip-text">No pesticides, no shortcuts</p>
+        <p class="strip-title" data-en="Naturally Grown" data-lv="Dabiski Audzēts" data-ru="Натурально Выращен">Naturally Grown</p>
+        <p class="strip-text" data-en="No pesticides, no shortcuts" data-lv="Bez pesticīdiem, bez saīsinājumiem" data-ru="Без пестицидов, без компромиссов">No pesticides, no shortcuts</p>
       </div>
     </div>
     <div class="strip-item">
       <div class="strip-icon">✦</div>
       <div>
-        <p class="strip-title">Gluten Free</p>
-        <p class="strip-text">Naturally, by design</p>
+        <p class="strip-title" data-en="Gluten Free" data-lv="Bez Lipekļa" data-ru="Без Глютена">Gluten Free</p>
+        <p class="strip-text" data-en="Naturally, by design" data-lv="Dabiski, pēc savas dabas" data-ru="Естественно, по своей природе">Naturally, by design</p>
       </div>
     </div>
     <div class="strip-item">
       <div class="strip-icon">💪</div>
       <div>
-        <p class="strip-title">High in Fibre</p>
-        <p class="strip-text">And plant-based protein</p>
+        <p class="strip-title" data-en="High in Fibre" data-lv="Bagāts ar Šķiedrvielām" data-ru="Богат Клетчаткой">High in Fibre</p>
+        <p class="strip-text" data-en="And plant-based protein" data-lv="Un augu izcelsmes olbaltumvielām" data-ru="И растительным белком">And plant-based protein</p>
       </div>
     </div>
     <div class="strip-item">
       <div class="strip-icon">🚚</div>
       <div>
-        <p class="strip-title">Ships from Riga</p>
-        <p class="strip-text">Fast delivery across Baltics</p>
+        <p class="strip-title" data-en="Ships from Riga" data-lv="Piegāde no Rīgas" data-ru="Доставка из Риги">Ships from Riga</p>
+        <p class="strip-text" data-en="Fast delivery across Baltics" data-lv="Ātra piegāde visā Baltijā" data-ru="Быстрая доставка по Балтии">Fast delivery across Baltics</p>
       </div>
     </div>
   </div>
@@ -179,44 +212,79 @@
 
 <section class="about">
   <div>
-    <p class="section-tag">Our Philosophy</p>
-    <h2>Just<br><em>the grain.</em></h2>
-    <p class="body-text">Wild rice isn't rice at all, technically — it's the seed of an aquatic grass, harvested the way it's always been. Earthy, nutty, and satisfying in a way polished grains aren't.</p>
-    <p class="body-text">Use it as a base for hearty bowls, salads, or alongside roasted vegetables. A little goes a long way.</p>
+    <p class="section-tag" data-en="Our Philosophy" data-lv="Mūsu Filozofija" data-ru="Наша философия">Our Philosophy</p>
+    <h2 data-en="Just<br><em>the grain.</em>" data-lv="Tikai<br><em>graudi.</em>" data-ru="Только<br><em>зерно.</em>">Just<br><em>the grain.</em></h2>
+    <p class="body-text" data-en="Wild rice isn't rice at all, technically — it's the seed of an aquatic grass, harvested the way it's always been. Earthy, nutty, and satisfying in a way polished grains aren't." data-lv="Savvaļas rīsi patiesībā vispār nav rīsi — tie ir ūdensauga sēklas, novāktas tā, kā tas vienmēr ir bijis. Zemiski, ar rieksta garšu un sātīgi tā, kā pulēti graudi nekad nebūs." data-ru="Дикий рис на самом деле вовсе не рис — это семена водного растения, собранные так, как это делалось всегда. Землистый, ореховый и сытный так, как отшлифованные зёрна никогда не будут.">Wild rice isn't rice at all, technically — it's the seed of an aquatic grass, harvested the way it's always been. Earthy, nutty, and satisfying in a way polished grains aren't.</p>
+    <p class="body-text" data-en="Use it as a base for hearty bowls, salads, or alongside roasted vegetables. A little goes a long way." data-lv="Izmantojiet to kā pamatu sātīgiem bļodu ēdieniem, salātiem vai kopā ar ceptiem dārzeņiem. Neliels daudzums ir pietiekams." data-ru="Используйте его как основу для сытных боулов, салатов или в дополнение к запечённым овощам. Небольшого количества хватит надолго.">Use it as a base for hearty bowls, salads, or alongside roasted vegetables. A little goes a long way.</p>
   </div>
   <div class="about-visual"></div>
 </section>
 
 <section class="order" id="order">
-  <p class="order-tag">Ready to Order</p>
-  <h2>Our Wild Rice.</h2>
-  <p class="order-sub">Direct bank transfer · Fast shipping across the Baltics</p>
+  <p class="order-tag" data-en="Ready to Order" data-lv="Gatavs Pasūtīt" data-ru="Готовы заказать">Ready to Order</p>
+  <h2 data-en="Our Wild Rice." data-lv="Mūsu Savvaļas Rīsi." data-ru="Наш Дикий Рис.">Our Wild Rice.</h2>
+  <p class="order-sub" data-en="Direct bank transfer · Fast shipping across the Baltics" data-lv="Tiešs bankas pārskaitījums · Ātra piegāde visā Baltijā" data-ru="Прямой банковский перевод · Быстрая доставка по Балтии">Direct bank transfer · Fast shipping across the Baltics</p>
 
   <div class="products-grid">
     <div class="order-card">
-      <div class="product-placeholder"><span>Wild Rice</span></div>
+      <div class="product-placeholder"><span data-en="Wild Rice" data-lv="Savvaļas Rīsi" data-ru="Дикий Рис">Wild Rice</span></div>
       <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
-        <div class="order-product">Wild Rice</div>
-        <span style="font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.4); padding:3px 8px;">Coming Soon</span>
+        <div class="order-product" data-en="Wild Rice" data-lv="Savvaļas Rīsi" data-ru="Дикий Рис">Wild Rice</div>
+        <span style="font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.4); padding:3px 8px;" data-en="Coming Soon" data-lv="Drīzumā" data-ru="Скоро">Coming Soon</span>
       </div>
-      <div class="order-weight">500 grams</div>
+      <div class="order-weight" data-en="500 grams" data-lv="500 grami" data-ru="500 граммов">500 grams</div>
       <div class="order-divider"></div>
       <div class="order-price-big">—</div>
-      <div class="order-price-note">Pricing to be confirmed</div>
-      <button class="btn-order" disabled style="opacity:0.4; cursor:not-allowed;">Order Now</button>
+      <div class="order-price-note" data-en="Pricing to be confirmed" data-lv="Cena tiks precizēta" data-ru="Цена уточняется">Pricing to be confirmed</div>
+      <button class="btn-order" disabled style="opacity:0.4; cursor:not-allowed;" data-en="Order Now" data-lv="Pasūtīt Tagad" data-ru="Заказать">Order Now</button>
     </div>
   </div>
 
   <p style="text-align:center; margin-top:2rem; font-size:0.85rem; color:rgba(255,255,255,0.6);">
-    Questions or want to be notified when it's available?
+    <span data-en="Questions or want to be notified when it's available?" data-lv="Jautājumi vai vēlaties saņemt paziņojumu, kad tas būs pieejams?" data-ru="Есть вопросы или хотите узнать, когда товар появится в наличии?">Questions or want to be notified when it's available?</span>
     <a href="mailto:hippy24co@gmail.com" style="color:var(--tan);">hippy24co@gmail.com</a>
   </p>
 </section>
 
 <footer>
-  <span>Wild Rice · Hippy · PENNY SIA</span>
+  <span data-en="Wild Rice · Hippy · PENNY SIA" data-lv="Savvaļas Rīsi · Hippy · PENNY SIA" data-ru="Дикий Рис · Hippy · PENNY SIA">Wild Rice · Hippy · PENNY SIA</span>
   <span>VAT: LV40003555096 · © 2026</span>
 </footer>
+
+<script>
+  let currentLang = 'lv';
+
+  function toggleLangDropdown() {
+    document.getElementById('langDropdown').classList.toggle('open');
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!document.getElementById('langSwitch').contains(e.target)) {
+      document.getElementById('langDropdown').classList.remove('open');
+    }
+  });
+
+  function setLang(lang, skipSave) {
+    currentLang = lang;
+    if (!skipSave) { try { localStorage.setItem('hippy_lang', lang); } catch(e) {} }
+    document.getElementById('langDropdown').classList.remove('open');
+    document.getElementById('currentLangLabel').textContent = lang.toUpperCase();
+    document.querySelectorAll('.lang-option').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const text = el.getAttribute('data-' + lang) || el.getAttribute('data-en');
+      if (text) el.innerHTML = text;
+    });
+    document.documentElement.lang = lang;
+  }
+
+  (function() {
+    let saved = 'lv';
+    try { saved = localStorage.getItem('hippy_lang') || 'lv'; } catch(e) {}
+    setLang(saved, true);
+  })();
+</script>
 
 </body>
 </html>
