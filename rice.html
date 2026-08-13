@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Wild Rice — Hippy</title>
+<meta name="description" content="Naturally grown wild rice, shipped from Riga, Latvia."/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white:    #fffdf8;
+    --cream:    #f4f1e4;
+    --dark:     #2f3a24;
+    --green:    #57683f;
+    --green-lt: #8fa06a;
+    --brown:    #6b4a30;
+    --tan:      #c9a668;
+    --gray:     #8a8577;
+    --border:   #e3ddc9;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--dark);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  h1, h2 { font-family: 'Fraunces', serif; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 4rem;
+    background: rgba(255,253,248,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dark); }
+  .nav-right { display: flex; align-items: center; gap: 2rem; }
+  .nav-right a {
+    text-decoration: none; color: var(--dark); font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    border-bottom: 1px solid var(--dark); padding-bottom: 0.1rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-right a:hover { color: var(--green); border-color: var(--green); }
+
+  .hero { min-height: 60vh; display: grid; grid-template-columns: 55fr 45fr; padding-top: 72px; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem 6rem 5rem; border-right: 1px solid var(--border); }
+  .hero-right { background: linear-gradient(160deg, var(--tan) 0%, var(--green) 100%); }
+
+  .eyebrow { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--green); margin-bottom: 2rem; }
+  h1 { font-size: clamp(3.5rem, 5.5vw, 6.5rem); font-weight: 300; line-height: 0.95; color: var(--dark); }
+  h1 em { font-style: italic; color: var(--brown); }
+  .hero-sub { font-family: 'Fraunces', serif; font-size: 1.4rem; font-style: italic; color: var(--dark); margin-top: 1.75rem; line-height: 1.4; }
+  .hero-desc { font-size: 0.95rem; color: var(--gray); max-width: 420px; margin-top: 1.5rem; line-height: 1.7; }
+  .hero-buy { margin-top: 2.5rem; }
+  .btn-main {
+    display: inline-block; background: var(--dark); color: var(--white); text-decoration: none;
+    padding: 0.9rem 2.25rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .btn-main:hover { background: var(--green); }
+
+  .strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--cream); }
+  .strip-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
+  .strip-item { padding: 2.25rem 2rem; display: flex; gap: 1rem; align-items: flex-start; border-left: 1px solid var(--border); }
+  .strip-item:first-child { border-left: none; }
+  .strip-icon { font-size: 1.4rem; }
+  .strip-title { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .strip-text { font-size: 0.78rem; color: var(--gray); line-height: 1.4; }
+
+  .about { display: grid; grid-template-columns: 45fr 55fr; padding: 7rem 5rem; gap: 4rem; align-items: center; }
+  .section-tag { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--green); margin-bottom: 1.25rem; }
+  .about h2 { font-size: clamp(2.25rem, 3.5vw, 3.25rem); font-weight: 300; margin-bottom: 1.75rem; }
+  .about h2 em { font-style: italic; color: var(--brown); }
+  .body-text { font-size: 0.95rem; color: var(--gray); line-height: 1.75; margin-bottom: 1.25rem; max-width: 480px; }
+  .about-visual { background: linear-gradient(160deg, var(--green-lt) 0%, var(--brown) 100%); min-height: 380px; }
+
+  .order { padding: 7rem 5rem; text-align: center; background: var(--dark); color: var(--white); }
+  .order-tag { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--tan); margin-bottom: 1.25rem; }
+  .order h2 { font-size: clamp(2.25rem, 3.5vw, 3.25rem); font-weight: 300; margin-bottom: 1rem; color: var(--white); }
+  .order-sub { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 3.5rem; }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 640px; margin: 0 auto; }
+  .order-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); padding: 2.5rem 2rem; text-align: left; }
+  .product-placeholder {
+    height: 140px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(160deg, var(--green-lt) 0%, var(--brown) 100%);
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 1.1rem; color: rgba(255,255,255,0.85);
+  }
+  .order-product { font-family: 'Fraunces', serif; font-size: 1.3rem; }
+  .order-weight { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+  .order-divider { height: 1px; background: rgba(255,255,255,0.12); margin: 1.5rem 0; }
+  .order-price-big { font-family: 'Fraunces', serif; font-size: 2rem; }
+  .order-price-note { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; margin-bottom: 1.75rem; }
+  .btn-order {
+    width: 100%; background: var(--tan); color: var(--dark); border: none; padding: 0.85rem;
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer;
+  }
+
+  footer { display: flex; justify-content: space-between; padding: 2rem 4rem; font-size: 0.7rem; color: var(--gray); border-top: 1px solid var(--border); }
+  footer a { color: inherit; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 260px; }
+    .hero-left { padding: 4rem 2rem; border-right: none; }
+    .strip-inner { grid-template-columns: repeat(2, 1fr); }
+    .about { grid-template-columns: 1fr; padding: 4rem 2rem; }
+    .order { padding: 4rem 2rem; }
+    nav { padding: 1.25rem 2rem; }
+    footer { flex-direction: column; gap: 0.5rem; padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Wild Rice</span>
+  <div class="nav-right">
+    <a href="index.html">Home</a>
+    <a href="cacao.html">Cacao</a>
+    <a href="#order">Shop Now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="eyebrow">Earthy · Wholesome · Natural</p>
+    <h1>Wild<br><em>Rice</em></h1>
+    <p class="hero-sub">Grown wild.<br>Kept honest.</p>
+    <p class="hero-desc">Naturally harvested wild rice — nutty, earthy, and full of texture. High in fibre and protein, and gluten-free by nature.</p>
+    <div class="hero-buy">
+      <a href="#order" class="btn-main">Shop Now</a>
+    </div>
+  </div>
+  <div class="hero-right"></div>
+</section>
+
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item">
+      <div class="strip-icon">🌾</div>
+      <div>
+        <p class="strip-title">Naturally Grown</p>
+        <p class="strip-text">No pesticides, no shortcuts</p>
+      </div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon">✦</div>
+      <div>
+        <p class="strip-title">Gluten Free</p>
+        <p class="strip-text">Naturally, by design</p>
+      </div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon">💪</div>
+      <div>
+        <p class="strip-title">High in Fibre</p>
+        <p class="strip-text">And plant-based protein</p>
+      </div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon">🚚</div>
+      <div>
+        <p class="strip-title">Ships from Riga</p>
+        <p class="strip-text">Fast delivery across Baltics</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="about">
+  <div>
+    <p class="section-tag">Our Philosophy</p>
+    <h2>Just<br><em>the grain.</em></h2>
+    <p class="body-text">Wild rice isn't rice at all, technically — it's the seed of an aquatic grass, harvested the way it's always been. Earthy, nutty, and satisfying in a way polished grains aren't.</p>
+    <p class="body-text">Use it as a base for hearty bowls, salads, or alongside roasted vegetables. A little goes a long way.</p>
+  </div>
+  <div class="about-visual"></div>
+</section>
+
+<section class="order" id="order">
+  <p class="order-tag">Ready to Order</p>
+  <h2>Our Wild Rice.</h2>
+  <p class="order-sub">Direct bank transfer · Fast shipping across the Baltics</p>
+
+  <div class="products-grid">
+    <div class="order-card">
+      <div class="product-placeholder"><span>Wild Rice</span></div>
+      <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+        <div class="order-product">Wild Rice</div>
+        <span style="font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.4); padding:3px 8px;">Coming Soon</span>
+      </div>
+      <div class="order-weight">500 grams</div>
+      <div class="order-divider"></div>
+      <div class="order-price-big">—</div>
+      <div class="order-price-note">Pricing to be confirmed</div>
+      <button class="btn-order" disabled style="opacity:0.4; cursor:not-allowed;">Order Now</button>
+    </div>
+  </div>
+
+  <p style="text-align:center; margin-top:2rem; font-size:0.85rem; color:rgba(255,255,255,0.6);">
+    Questions or want to be notified when it's available?
+    <a href="mailto:cacaowithu@gmail.com" style="color:var(--tan);">cacaowithu@gmail.com</a>
+  </p>
+</section>
+
+<footer>
+  <span>Wild Rice · Hippy · PENNY SIA</span>
+  <span>VAT: LV40003555096 · © 2026</span>
+</footer>
+
+</body>
+</html>
