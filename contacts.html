@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contacts — Hippy</title>
+<meta name="description" content="Contact Hippy / PENNY SIA, Riga, Latvia."/>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:    #f6ecd9;
+    --paper:    #fbf6ea;
+    --mustard:  #e8a33d;
+    --terra:    #c9603c;
+    --olive:    #6b7a3a;
+    --maroon:   #7a2e2e;
+    --ink:      #3a2b1c;
+    --ink-soft: #6b5a45;
+    --border:   #e6d9b8;
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .groovy { font-family: 'Bagel Fat One', cursive; }
+
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.75rem 4rem;
+  }
+  .nav-logo { font-size: 1.4rem; color: var(--maroon); }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    text-decoration: none; color: var(--ink); font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border-bottom: 2px solid transparent; padding-bottom: 3px;
+  }
+  .nav-links a:hover { border-color: var(--terra); color: var(--terra); }
+
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .card {
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 24px;
+    padding: 3rem 3.5rem;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 10px 0 rgba(58,43,28,0.08);
+  }
+
+  .card h1 {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 2.25rem;
+    color: var(--maroon);
+    margin-bottom: 2rem;
+  }
+
+  .row { margin-bottom: 1.25rem; }
+  .label {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 0.2rem;
+  }
+  .value { font-size: 0.98rem; color: var(--ink); }
+  .value a { color: var(--terra); text-decoration: none; }
+  .value a:hover { text-decoration: underline; }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo groovy">hippy</span>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="cacao.html">Cacao</a>
+    <a href="rice.html">Wild Rice</a>
+  </div>
+</nav>
+
+<main>
+  <div class="card">
+    <h1 class="groovy">Contacts</h1>
+    <div class="row"><span class="label">Company</span><span class="value">PENNY SIA</span></div>
+    <div class="row"><span class="label">Address</span><span class="value">Brīvības 111-3, LV-1001, Rīga, Latvija</span></div>
+    <div class="row"><span class="label">Phone</span><span class="value"><a href="tel:+37126300157">+371 26300157</a></span></div>
+    <div class="row"><span class="label">Email</span><span class="value"><a href="mailto:hippy24co@gmail.com">hippy24co@gmail.com</a></span></div>
+    <div class="row"><span class="label">VAT</span><span class="value">LV40003555096</span></div>
+  </div>
+</main>
+
+<footer>Hippy · PENNY SIA · © 2026</footer>
+
+</body>
+</html>
