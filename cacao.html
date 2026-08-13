@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>100% Cacao Powder</title>
-  <meta name="description" content="100% pure cacao powder. 200g for €6. Shipped from Riga, Latvia."/>
+  <meta name="description" content="100% pure cacao powder. 200g for €5.9, 1kg for €26.8. Shipped from Riga, Latvia."/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -708,13 +708,22 @@
       </div>
       <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
         <div class="order-product" data-en="100% Cacao Powder" data-lv="100% Kakao Pulveris" data-ru="100% Какао Порошок">100% Cacao Powder</div>
-        <span style="font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.4); padding:3px 8px;" data-en="Coming Soon" data-lv="Drīzumā" data-ru="Скоро">Coming Soon</span>
+        <span style="font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; border:1px solid rgba(94,140,90,0.4); color:var(--green-3); padding:3px 8px;" data-en="Available Now" data-lv="Pieejams" data-ru="В наличии">Available Now</span>
       </div>
-      <div class="order-weight" data-en="200 grams" data-lv="200 grami" data-ru="200 граммов">200 grams</div>
       <div class="order-divider"></div>
-      <div class="order-price-big">€6</div>
-      <div class="order-price-note" data-en="Per package · VAT included" data-lv="Par iepakojumu · PVN iekļauts" data-ru="За упаковку · НДС включён">Per package · VAT included</div>
-      <button class="btn-order" data-en="Order Now" data-lv="Pasūtīt Tagad" data-ru="Заказать" disabled style="opacity:0.4; cursor:not-allowed;">Order Now</button>
+      <div class="nibs-options">
+        <div class="nibs-option">
+          <span class="nibs-weight" data-en="200g" data-lv="200g" data-ru="200г">200g</span>
+          <span class="nibs-price">€5.9</span>
+          <button class="btn-order btn-small" data-en="Order" data-lv="Pasūtīt" data-ru="Заказать" onclick="showOrder('Cacao Powder 200g', '200g', '€5.9')">Order</button>
+        </div>
+        <div class="nibs-option">
+          <span class="nibs-weight" data-en="1kg" data-lv="1kg" data-ru="1кг">1kg</span>
+          <span class="nibs-price">€26.8</span>
+          <button class="btn-order btn-small" data-en="Order" data-lv="Pasūtīt" data-ru="Заказать" onclick="showOrder('Cacao Powder 1kg', '1kg', '€26.8')">Order</button>
+        </div>
+      </div>
+      <div class="order-price-note" style="margin-top:1.25rem;" data-en="VAT included" data-lv="PVN iekļauts" data-ru="НДС включён">VAT included</div>
     </div>
 
     <!-- PRODUCT 2: Cacao Nibs -->
@@ -797,8 +806,9 @@
     }
   });
 
-  function setLang(lang) {
+  function setLang(lang, skipSave) {
     currentLang = lang;
+    if (!skipSave) { try { localStorage.setItem('hippy_lang', lang); } catch(e) {} }
     document.getElementById('langDropdown').classList.remove('open');
     document.getElementById('currentLangLabel').textContent = lang.toUpperCase();
     document.querySelectorAll('.lang-option').forEach(btn => {
@@ -810,13 +820,17 @@
     });
     document.documentElement.lang = lang;
   }
-  
-  setLang('lv');
+
+  (function() {
+    let saved = 'lv';
+    try { saved = localStorage.getItem('hippy_lang') || 'lv'; } catch(e) {}
+    setLang(saved, true);
+  })();
 
   function showOrder(product, weight, price) {
     product = product || 'powder';
     weight = weight || '200g';
-    price = price || '€6';
+    price = price || '€5.9';
     const productLabel = { powder: 'Cacao Powder', nibs: 'Cacao Nibs' };
     const ref = productLabel[product] + ' ' + weight;
     const msgs = {
