@@ -54,8 +54,8 @@
   .lang-switch { position: relative; display: flex; align-items: center; }
   .lang-globe-btn {
     background: transparent; border: none; color: var(--dark); display: flex; align-items: center; gap: 0.4rem;
-    font-size: 0.7rem; font-family: 'Inter', sans-serif; font-weight: 500; cursor: pointer;
-    padding: 0.25rem 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.2s;
+    font-size: 1rem; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer;
+    padding: 0.25rem 0.5rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s;
   }
   .lang-globe-btn:hover { color: var(--green); }
   .lang-globe-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
@@ -66,7 +66,7 @@
   .lang-dropdown.open { display: block; }
   .lang-option {
     display: block; width: 100%; background: transparent; border: none; padding: 0.6rem 1.1rem; text-align: left;
-    font-size: 0.7rem; font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    font-size: 0.9rem; font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--dark); cursor: pointer; transition: background 0.15s; border-bottom: 1px solid var(--border);
   }
   .lang-option:last-child { border-bottom: none; }
@@ -137,11 +137,14 @@
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; }
     .hero-right { min-height: 260px; }
-    .hero-left { padding: 4rem 2rem; border-right: none; }
+    .hero-left { padding: 8rem 1.5rem 3rem; border-right: none; }
     .strip-inner { grid-template-columns: repeat(2, 1fr); }
-    .about { grid-template-columns: 1fr; padding: 4rem 2rem; }
-    .order { padding: 4rem 2rem; }
-    nav { padding: 1.25rem 2rem; }
+    .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
+    .order { padding: 4rem 1.5rem; }
+    nav { padding: 1rem 1.25rem; flex-wrap: wrap; justify-content: center; row-gap: 0.75rem; }
+    .nav-logo { width: 100%; text-align: center; }
+    .nav-right { gap: 0.9rem; flex-wrap: wrap; justify-content: center; }
+    .nav-right a { font-size: 0.65rem; }
     footer { flex-direction: column; gap: 0.5rem; padding: 2rem; }
   }
 </style>
