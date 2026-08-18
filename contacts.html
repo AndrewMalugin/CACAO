@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Contacts — Hippy</title>
 <meta name="description" content="Contact Hippy / PENNY SIA, Riga, Latvia."/>
-<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -22,53 +22,69 @@
   }
 
   body {
-    background: var(--cream);
+    background: #ffffff;
     color: var(--ink);
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
   }
 
-  .groovy { font-family: 'Bagel Fat One', cursive; }
+  .bg-decor { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .patchwork {
+    position: absolute; inset: 0;
+    background-image: url("boho-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    opacity: 0.4;
+  }
+  .vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.55) 0%, #ffffff 88%);
+  }
 
   nav {
+    position: relative; z-index: 10;
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.75rem 4rem;
     flex-wrap: wrap; row-gap: 0.75rem;
   }
-  .nav-logo { font-size: 1.4rem; color: var(--maroon); }
+  .nav-logo { display: flex; align-items: center; gap: 0.6rem; font-family: 'Fraunces', serif; font-size: 1.3rem; letter-spacing: 0.02em; color: var(--maroon); }
+  .nav-logo img { width: 32px; height: 32px; display: block; }
   .nav-links { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; justify-content: center; }
   .nav-links a {
-    text-decoration: none; color: var(--ink); font-size: 0.8rem; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    border-bottom: 2px solid transparent; padding-bottom: 3px;
+    text-decoration: none; color: var(--ink); font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border-bottom: 1px solid transparent; padding-bottom: 3px;
   }
   .nav-links a:hover { border-color: var(--terra); color: var(--terra); }
 
   .lang-switch { position: relative; display: flex; align-items: center; }
   .lang-globe-btn {
     background: transparent; border: none; color: var(--ink); display: flex; align-items: center; gap: 0.4rem;
-    font-size: 1rem; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer;
-    padding: 0.25rem 0.5rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s;
+    font-size: 0.85rem; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer;
+    padding: 0.25rem 0.5rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s;
   }
   .lang-globe-btn:hover { color: var(--terra); }
   .lang-globe-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
   .lang-dropdown {
     display: none; position: absolute; top: calc(100% + 4px); right: 0; background: var(--paper);
-    border: 2px solid var(--ink); min-width: 90px; z-index: 200; overflow: hidden; border-radius: 8px;
+    border: 1px solid var(--ink); min-width: 90px; z-index: 200; overflow: hidden; border-radius: 8px;
   }
   .lang-dropdown.open { display: block; }
   .lang-option {
     display: block; width: 100%; background: transparent; border: none; padding: 0.6rem 1.1rem; text-align: left;
-    font-size: 0.9rem; font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    font-size: 0.78rem; font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--ink); cursor: pointer; transition: background 0.15s;
   }
   .lang-option:hover { background: var(--cream); }
   .lang-option.active { color: var(--terra); }
 
   main {
+    position: relative; z-index: 5;
     flex: 1;
     display: flex;
     align-items: center;
@@ -78,17 +94,19 @@
 
   .card {
     background: var(--paper);
-    border: 3px solid var(--ink);
-    border-radius: 24px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
     padding: 3rem 3.5rem;
     max-width: 420px;
     width: 100%;
-    box-shadow: 0 10px 0 rgba(58,43,28,0.08);
+    box-shadow: 0 10px 30px rgba(58,43,28,0.06);
   }
 
   .card h1 {
-    font-family: 'Bagel Fat One', cursive;
-    font-size: 2.25rem;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 2.1rem;
     color: var(--maroon);
     margin-bottom: 2rem;
   }
@@ -96,20 +114,22 @@
   .row { margin-bottom: 1.25rem; }
   .label {
     display: block;
-    font-size: 0.68rem;
-    letter-spacing: 0.15em;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--olive);
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
   }
-  .value { font-size: 0.98rem; color: var(--ink); }
+  .value { font-size: 0.95rem; color: var(--ink); font-weight: 400; }
   .value a { color: var(--terra); text-decoration: none; }
   .value a:hover { text-decoration: underline; }
 
   footer {
+    position: relative; z-index: 5;
     text-align: center;
     padding: 1.5rem;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--ink-soft);
   }
 
@@ -122,8 +142,13 @@
 </head>
 <body>
 
+<div class="bg-decor">
+  <div class="patchwork"></div>
+  <div class="vignette"></div>
+</div>
+
 <nav>
-  <span class="nav-logo groovy">hippy</span>
+  <span class="nav-logo"><img src="logo.png" alt="Hippy logo"/>hippy</span>
   <div class="nav-links">
     <a href="index.html" data-en="Home" data-lv="Sākums" data-ru="Главная">Home</a>
     <a href="cacao.html" data-en="Cacao" data-lv="Kakao" data-ru="Какао">Cacao</a>
@@ -144,7 +169,7 @@
 
 <main>
   <div class="card">
-    <h1 class="groovy" data-en="Contacts" data-lv="Kontakti" data-ru="Контакты">Contacts</h1>
+    <h1 data-en="Contacts" data-lv="Kontakti" data-ru="Контакты">Contacts</h1>
     <div class="row"><span class="label" data-en="Company" data-lv="Uzņēmums" data-ru="Компания">Company</span><span class="value">PENNY SIA</span></div>
     <div class="row"><span class="label" data-en="Address" data-lv="Adrese" data-ru="Адрес">Address</span><span class="value">Brīvības 111-3, LV-1001, Rīga, Latvija</span></div>
     <div class="row"><span class="label" data-en="Phone" data-lv="Tālrunis" data-ru="Телефон">Phone</span><span class="value"><a href="tel:+37126300157">+371 26300157</a></span></div>
