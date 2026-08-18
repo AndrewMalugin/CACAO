@@ -111,6 +111,11 @@
   .order-sub { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 3.5rem; }
   .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 640px; margin: 0 auto; }
   .order-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); padding: 2.5rem 2rem; text-align: left; }
+  .nibs-options { display: flex; flex-direction: column; gap: 0; margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+  .nibs-option { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; justify-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0.9rem 0.5rem; }
+  .nibs-weight { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); justify-self: start; }
+  .nibs-price { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 300; color: var(--white); justify-self: center; }
+  .btn-small { padding: 0.35rem 1.1rem !important; font-size: 0.6rem !important; letter-spacing: 0.12em !important; justify-self: end; width: auto !important; }
   .product-placeholder {
     height: 140px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center;
     background: linear-gradient(160deg, var(--green-lt) 0%, var(--brown) 100%);
@@ -230,13 +235,22 @@
       <div class="product-placeholder"><span data-en="Wild Rice" data-lv="Savvaļas Rīsi" data-ru="Дикий Рис">Wild Rice</span></div>
       <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
         <div class="order-product" data-en="Wild Rice" data-lv="Savvaļas Rīsi" data-ru="Дикий Рис">Wild Rice</div>
-        <span style="font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.4); padding:3px 8px;" data-en="Coming Soon" data-lv="Drīzumā" data-ru="Скоро">Coming Soon</span>
+        <span style="font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; border:1px solid rgba(143,160,106,0.4); color:var(--green-lt); padding:3px 8px;" data-en="Available Now" data-lv="Pieejams" data-ru="В наличии">Available Now</span>
       </div>
-      <div class="order-weight" data-en="500 grams" data-lv="500 grami" data-ru="500 граммов">500 grams</div>
       <div class="order-divider"></div>
-      <div class="order-price-big">—</div>
-      <div class="order-price-note" data-en="Pricing to be confirmed" data-lv="Cena tiks precizēta" data-ru="Цена уточняется">Pricing to be confirmed</div>
-      <button class="btn-order" disabled style="opacity:0.4; cursor:not-allowed;" data-en="Order Now" data-lv="Pasūtīt Tagad" data-ru="Заказать">Order Now</button>
+      <div class="nibs-options">
+        <div class="nibs-option">
+          <span class="nibs-weight" data-en="200g" data-lv="200g" data-ru="200г">200g</span>
+          <span class="nibs-price">€5.9</span>
+          <button class="btn-order btn-small" data-en="Order" data-lv="Pasūtīt" data-ru="Заказать" onclick="showOrder('Wild Rice 200g', '200g', '€5.9')">Order</button>
+        </div>
+        <div class="nibs-option">
+          <span class="nibs-weight" data-en="1kg" data-lv="1kg" data-ru="1кг">1kg</span>
+          <span class="nibs-price">€27.9</span>
+          <button class="btn-order btn-small" data-en="Order" data-lv="Pasūtīt" data-ru="Заказать" onclick="showOrder('Wild Rice 1kg', '1kg', '€27.9')">Order</button>
+        </div>
+      </div>
+      <div class="order-price-note" style="margin-top:1.25rem;" data-en="VAT included" data-lv="PVN iekļauts" data-ru="НДС включён">VAT included</div>
     </div>
   </div>
 
@@ -284,6 +298,19 @@
     try { saved = localStorage.getItem('hippy_lang') || 'lv'; } catch(e) {}
     setLang(saved, true);
   })();
+
+  function showOrder(product, weight, price) {
+    product = product || 'Wild Rice';
+    weight = weight || '200g';
+    price = price || '€5.9';
+    const ref = product;
+    const msgs = {
+      en: 'To order ' + ref + ' (' + price + '), please transfer ' + price + ' to:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nReference: ' + ref + '\n\nThen email your delivery address to:\nhippy24co@gmail.com\nPhone: +371 26300157',
+      lv: 'Lai pasūtītu ' + ref + ' (' + price + '), pārskaitiet ' + price + ' uz:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nMaksājuma mērķis: ' + ref + '\n\nPēc tam nosūtiet piegādes adresi uz:\nhippy24co@gmail.com\nTālr: +371 26300157',
+      ru: 'Для заказа ' + ref + ' (' + price + '), переведите ' + price + ':\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nНазначение: ' + ref + '\n\nЗатем отправьте адрес доставки на:\nhippy24co@gmail.com\nТел: +371 26300157'
+    };
+    alert(msgs[currentLang] || msgs['lv']);
+  }
 </script>
 
 </body>
