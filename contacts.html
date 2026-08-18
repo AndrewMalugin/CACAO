@@ -36,9 +36,10 @@
   nav {
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.75rem 4rem;
+    flex-wrap: wrap; row-gap: 0.75rem;
   }
   .nav-logo { font-size: 1.4rem; color: var(--maroon); }
-  .nav-links { display: flex; gap: 2rem; }
+  .nav-links { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; justify-content: center; }
   .nav-links a {
     text-decoration: none; color: var(--ink); font-size: 0.8rem; font-weight: 500;
     letter-spacing: 0.1em; text-transform: uppercase;
@@ -49,8 +50,8 @@
   .lang-switch { position: relative; display: flex; align-items: center; }
   .lang-globe-btn {
     background: transparent; border: none; color: var(--ink); display: flex; align-items: center; gap: 0.4rem;
-    font-size: 0.7rem; font-family: 'Poppins', sans-serif; font-weight: 500; cursor: pointer;
-    padding: 0.25rem 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.2s;
+    font-size: 1rem; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer;
+    padding: 0.25rem 0.5rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s;
   }
   .lang-globe-btn:hover { color: var(--terra); }
   .lang-globe-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
@@ -61,7 +62,7 @@
   .lang-dropdown.open { display: block; }
   .lang-option {
     display: block; width: 100%; background: transparent; border: none; padding: 0.6rem 1.1rem; text-align: left;
-    font-size: 0.7rem; font-family: 'Poppins', sans-serif; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    font-size: 0.9rem; font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--ink); cursor: pointer; transition: background 0.15s;
   }
   .lang-option:hover { background: var(--cream); }
@@ -110,6 +111,12 @@
     padding: 1.5rem;
     font-size: 0.75rem;
     color: var(--ink-soft);
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 1.25rem 1.25rem; justify-content: center; text-align: center; }
+    .nav-links { gap: 1rem; justify-content: center; }
+    .card { padding: 2.25rem 1.75rem; }
   }
 </style>
 </head>
