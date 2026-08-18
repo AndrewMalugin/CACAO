@@ -828,11 +828,10 @@
   })();
 
   function showOrder(product, weight, price) {
-    product = product || 'powder';
+    product = product || 'Cacao Powder';
     weight = weight || '200g';
     price = price || '€5.9';
-    const productLabel = { powder: 'Cacao Powder', nibs: 'Cacao Nibs' };
-    const ref = productLabel[product] + ' ' + weight;
+    const ref = product;
     const msgs = {
       en: 'To order ' + ref + ' (' + price + '), please transfer ' + price + ' to:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nReference: ' + ref + '\n\nThen email your delivery address to:\nhippy24co@gmail.com\nPhone: +371 26300157',
       lv: 'Lai pasūtītu ' + ref + ' (' + price + '), pārskaitiet ' + price + ' uz:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nMaksājuma mērķis: ' + ref + '\n\nPēc tam nosūtiet piegādes adresi uz:\nhippy24co@gmail.com\nTālr: +371 26300157',
