@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Hippy — Natural Goods from Latvia</title>
-<meta name="description" content="Hippy — pure cacao and wild rice, naturally grown, shipped from Riga, Latvia."/>
+<title>Hippy — Natural Cacao and Wild Rice from Latvia</title>
+<meta name="description" content="Hippy sells pure cacao powder and wild rice from Latvia, honestly grown, naturally made, explore our products and discover more from Hippy soon."/>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Poppins:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -116,6 +116,33 @@
   .card.cacao .card-title { color: var(--maroon); }
   .card.rice .card-title { color: var(--olive-dk); }
   .card-desc { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 1.75rem; }
+
+  .faq {
+    position: relative; z-index: 5;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5rem 2rem 6rem;
+    text-align: center;
+  }
+  .faq-tag {
+    font-size: 0.75rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--olive-dk); margin-bottom: 1rem;
+  }
+  .faq h2 {
+    font-family: 'Fraunces', 'Poppins', sans-serif;
+    font-weight: 600; font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--maroon); margin-bottom: 0.5rem;
+  }
+  .faq-list { text-align: left; margin-top: 2.5rem; }
+  .faq-item { border-bottom: 1px solid rgba(92,31,31,0.15); padding: 1.4rem 0; }
+  .faq-item summary {
+    font-family: 'Poppins', sans-serif; font-size: 1.05rem; font-weight: 600; color: var(--ink);
+    cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+'; font-size: 1.5rem; font-weight: 300; color: var(--terra); flex-shrink: 0; transition: transform 0.2s;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.7; margin-top: 0.9rem; }
   .card-cta {
     font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
     padding: 0.75rem 1.75rem; border-radius: 999px; border: 2px solid var(--ink); color: var(--ink);
@@ -208,6 +235,17 @@
     <span class="card-cta" data-en="Shop Wild Rice" data-lv="Iepirkties" data-ru="В магазин">Shop Wild Rice</span>
   </a>
 </div>
+
+<section class="faq">
+  <p class="faq-tag" data-en="FAQ" data-lv="Biežāk Uzdotie Jautājumi" data-ru="Часто задаваемые вопросы">FAQ</p>
+  <h2 data-en="Common Questions" data-lv="Biežākie Jautājumi" data-ru="Частые вопросы">Common Questions</h2>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary data-en="What does Hippy sell?" data-lv="Ko pārdod Hippy?" data-ru="Что продаёт Hippy?">What does Hippy sell?</summary>
+      <p data-en="Hippy currently sells pure cacao powder and wild rice, naturally grown and shipped from Riga, Latvia, with more products planned soon." data-lv="Hippy pašlaik pārdod tīru kakao pulveri un savvaļas rīsus, dabiski audzētus un sūtītus no Rīgas, Latvijas, un drīzumā plānoti vēl vairāk produktu." data-ru="Hippy в настоящее время продаёт чистый какао-порошок и дикий рис, натурально выращенные и отправляемые из Риги, Латвия, а в ближайшее время планируется больше товаров.">Hippy currently sells pure cacao powder and wild rice, naturally grown and shipped from Riga, Latvia, with more products planned soon.</p>
+    </details>
+  </div>
+</section>
 
 <footer>
   Hippy · PENNY SIA · Rīga, Latvija · <a href="mailto:hippy24co@gmail.com">hippy24co@gmail.com</a>
