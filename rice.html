@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Wild Rice — Hippy</title>
-<meta name="description" content="Naturally grown wild rice, shipped from Riga, Latvia."/>
+<title>Hippy Wild Rice Latvia | Quality Wild Rice 200g & 1kg</title>
+<meta name="description" content="Hippy offers quality wild rice in Latvia, perfect as a healthy side dish, available in 200 gram and 1 kilogram packaging with fast delivery."/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -100,6 +100,51 @@
 
   .about { display: grid; grid-template-columns: 45fr 55fr; padding: 7rem 5rem; gap: 4rem; align-items: center; }
   .section-tag { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--green); margin-bottom: 1.25rem; }
+
+  .faq {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    text-align: center;
+  }
+  .faq-list {
+    text-align: left;
+    margin-top: 3rem;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+  }
+  .faq-item summary {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--dark);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    color: var(--green);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-top: 1rem;
+  }
   .about h2 { font-size: clamp(2.25rem, 3.5vw, 3.25rem); font-weight: 300; margin-bottom: 1.75rem; }
   .about h2 em { font-style: italic; color: var(--brown); }
   .body-text { font-size: 0.95rem; color: var(--gray); line-height: 1.75; margin-bottom: 1.25rem; max-width: 480px; }
@@ -260,6 +305,29 @@
     <span data-en="Questions or want to be notified when it's available?" data-lv="Jautājumi vai vēlaties saņemt paziņojumu, kad tas būs pieejams?" data-ru="Есть вопросы или хотите узнать, когда товар появится в наличии?">Questions or want to be notified when it's available?</span>
     <a href="mailto:hippy24co@gmail.com" style="color:var(--tan);">hippy24co@gmail.com</a>
   </p>
+</section>
+
+<section class="faq">
+  <p class="section-tag" data-en="FAQ" data-lv="Biežāk Uzdotie Jautājumi" data-ru="Часто задаваемые вопросы">FAQ</p>
+  <h2 data-en="Common<br><em>Questions</em>" data-lv="Biežākie<br><em>Jautājumi</em>" data-ru="Частые<br><em>вопросы</em>">Common<br><em>Questions</em></h2>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary data-en="What makes wild rice different from regular rice?" data-lv="Kā savvaļas rīsi atšķiras no parastiem rīsiem?" data-ru="Чем дикий рис отличается от обычного риса?">What makes wild rice different from regular rice?</summary>
+      <p data-en="Wild rice isn't technically rice at all — it's the seed of an aquatic grass. It has a nuttier, earthier flavour and a firmer bite than polished white or brown rice." data-lv="Savvaļas rīsi patiesībā vispār nav rīsi — tie ir ūdensauga sēklas. Tiem ir izteiktāka rieksta garša, zemes nots un blīvāka tekstūra nekā pulētiem baltajiem vai brūnajiem rīsiem." data-ru="Дикий рис на самом деле вовсе не рис — это семена водного растения. У него более ореховый, землистый вкус и более плотная текстура, чем у отшлифованного белого или бурого риса.">Wild rice isn't technically rice at all — it's the seed of an aquatic grass. It has a nuttier, earthier flavour and a firmer bite than polished white or brown rice.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-en="Is wild rice gluten-free?" data-lv="Vai savvaļas rīsi ir bez lipekļa?" data-ru="Дикий рис без глютена?">Is wild rice gluten-free?</summary>
+      <p data-en="Yes, wild rice is naturally gluten-free, and it's a good source of fibre and plant-based protein." data-lv="Jā, savvaļas rīsi dabiski nesatur lipekli, un tie ir labs šķiedrvielu un augu izcelsmes olbaltumvielu avots." data-ru="Да, дикий рис естественно не содержит глютена и является хорошим источником клетчатки и растительного белка.">Yes, wild rice is naturally gluten-free, and it's a good source of fibre and plant-based protein.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-en="How do I cook wild rice?" data-lv="Kā pagatavot savvaļas rīsus?" data-ru="Как готовить дикий рис?">How do I cook wild rice?</summary>
+      <p data-en="Rinse the rice, then simmer in about 3 parts water to 1 part rice for 40-50 minutes, until the grains split and turn tender. Use it as a base for bowls, salads, or alongside roasted vegetables." data-lv="Noskalojiet rīsus un vāriet uz lēnas uguns aptuveni 3 daļās ūdens uz 1 daļu rīsu 40-50 minūtes, līdz graudi atveras un kļūst mīksti. Izmantojiet tos kā pamatu bļodu ēdieniem, salātiem vai kopā ar ceptiem dārzeņiem." data-ru="Промойте рис и варите на медленном огне в соотношении примерно 3 части воды на 1 часть риса 40-50 минут, пока зёрна не раскроются и не станут мягкими. Используйте как основу для боулов, салатов или с запечёнными овощами.">Rinse the rice, then simmer in about 3 parts water to 1 part rice for 40-50 minutes, until the grains split and turn tender. Use it as a base for bowls, salads, or alongside roasted vegetables.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-en="How is it packaged and shipped?" data-lv="Kā tas ir iepakots un piegādāts?" data-ru="Как он упакован и доставляется?">How is it packaged and shipped?</summary>
+      <p data-en="Wild rice comes in resealable 200g and 1kg bags, shipped from Riga with fast delivery across Latvia and the Baltics." data-lv="Savvaļas rīsi tiek piegādāti atkārtoti aizveramos 200g un 1kg maisiņos, sūtīti no Rīgas ar ātru piegādi visā Latvijā un Baltijā." data-ru="Дикий рис поставляется в пакетах на 200г и 1кг с повторным закрытием, отправляется из Риги с быстрой доставкой по Латвии и странам Балтии.">Wild rice comes in resealable 200g and 1kg bags, shipped from Riga with fast delivery across Latvia and the Baltics.</p>
+    </details>
+  </div>
 </section>
 
 <footer>
