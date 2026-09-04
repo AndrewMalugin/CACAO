@@ -41,12 +41,13 @@
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
   }
-  .nav-logo { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dark); }
+  .nav-logo { display: flex; align-items: center; }
+  .nav-logo img { width: 36px; height: 36px; display: block; }
   .nav-right { display: flex; align-items: center; gap: 2rem; }
   .nav-right a {
-    text-decoration: none; color: var(--dark); font-size: 0.7rem; font-weight: 500;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    border-bottom: 1px solid var(--dark); padding-bottom: 0.1rem;
+    text-decoration: none; color: var(--dark); font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border-bottom: 1px solid transparent; padding-bottom: 3px;
     transition: color 0.2s, border-color 0.2s;
   }
   .nav-right a:hover { color: var(--green); border-color: var(--green); }
@@ -73,9 +74,8 @@
   .lang-option:hover { background: var(--cream); }
   .lang-option.active { color: var(--green); }
 
-  .hero { min-height: 60vh; display: grid; grid-template-columns: 55fr 45fr; padding-top: 72px; }
-  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem 6rem 5rem; border-right: 1px solid var(--border); }
-  .hero-right { background: linear-gradient(160deg, var(--tan) 0%, var(--green) 100%); }
+  .hero { display: grid; grid-template-columns: 1fr; padding-top: 72px; }
+  .hero-left { display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center; padding: 3.5rem 1.5rem 2.5rem; }
 
   .eyebrow { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--green); margin-bottom: 2rem; }
   h1 { font-size: clamp(3.5rem, 5.5vw, 6.5rem); font-weight: 300; line-height: 0.95; color: var(--dark); }
@@ -180,9 +180,7 @@
   footer a { color: inherit; }
 
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { min-height: 260px; }
-    .hero-left { padding: 8rem 1.5rem 3rem; border-right: none; }
+    .hero-left { padding: 7rem 1.5rem 2.5rem; }
     .strip-inner { grid-template-columns: repeat(2, 1fr); }
     .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
     .order { padding: 4rem 1.5rem; }
@@ -197,7 +195,7 @@
 <body>
 
 <nav>
-  <span class="nav-logo" data-en="Wild Rice" data-lv="Savvaļas Rīsi" data-ru="Дикий Рис">Wild Rice</span>
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="Hippy logo"/></a>
   <div class="nav-right">
     <a href="index.html" data-en="Home" data-lv="Sākums" data-ru="Главная">Home</a>
     <a href="cacao.html" data-en="Cacao" data-lv="Kakao" data-ru="Какао">Cacao</a>
@@ -226,7 +224,6 @@
       <a href="#order" class="btn-main" data-en="Shop Now" data-lv="Apskatīt produktus" data-ru="Смотреть товары">Shop Now</a>
     </div>
   </div>
-  <div class="hero-right"></div>
 </section>
 
 <div class="strip">
