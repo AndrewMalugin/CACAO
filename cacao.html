@@ -46,14 +46,8 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--green-1);
-    }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { width: 36px; height: 36px; display: block; }
 
     .nav-right {
       display: flex;
@@ -119,14 +113,14 @@
 
     .nav-cta {
       font-family: 'Inter', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--green-1);
       text-decoration: none;
-      border-bottom: 1px solid var(--green-1);
-      padding-bottom: 0.1rem;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 3px;
       transition: color 0.2s, border-color 0.2s;
     }
     .nav-cta:hover { color: var(--green-3); border-color: var(--green-3); }
@@ -655,7 +649,7 @@
 <body>
 
 <nav>
-  <span class="nav-logo">100% Cacao</span>
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="Hippy logo"/></a>
   <div class="nav-right">
     <a href="index.html" class="nav-cta" style="border-bottom:none;" data-en="Home" data-lv="Sākums" data-ru="Главная">Home</a>
     <a href="rice.html" class="nav-cta" style="border-bottom:none;" data-en="Wild Rice" data-lv="Savvaļas rīsi" data-ru="Дикий рис">Wild Rice</a>
