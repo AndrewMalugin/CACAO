@@ -133,18 +133,18 @@
 
     /* ── HERO ── */
     .hero {
-      min-height: 60vh;
       display: grid;
-      grid-template-columns: 55fr 45fr;
+      grid-template-columns: 1fr;
       padding-top: 72px;
     }
 
     .hero-left {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
       justify-content: center;
-      padding: 6rem 4rem 6rem 5rem;
-      border-right: 1px solid var(--border);
+      padding: 3.5rem 1.5rem 2.5rem;
     }
 
     .eyebrow {
@@ -187,8 +187,8 @@
       font-size: 0.95rem;
       line-height: 1.9;
       color: var(--green-3);
-      max-width: 380px;
-      margin-bottom: 3.5rem;
+      max-width: 420px;
+      margin: 0 auto 2.5rem;
       opacity: 0;
       animation: up 0.7s 0.55s forwards;
     }
@@ -196,6 +196,7 @@
     .hero-buy {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 2.5rem;
       opacity: 0;
       animation: up 0.7s 0.7s forwards;
@@ -233,14 +234,6 @@
       color: var(--gray);
       display: block;
       margin-bottom: 0.2rem;
-    }
-
-    /* Hero Right - Updated Image Name */
-    .hero-right {
-      background-image: url('hero.jpg');
-      background-size: cover;
-      background-position: center;
-      position: relative;
     }
 
     /* ── STRIP ── */
@@ -649,9 +642,7 @@
       .nav-logo { width: 100%; text-align: center; }
       .nav-right { gap: 0.9rem; flex-wrap: wrap; justify-content: center; }
       .nav-right a { font-size: 0.65rem; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 8rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--border); }
-      .hero-right { height: 300px; }
+      .hero-left { padding: 7rem 1.5rem 2.5rem; }
       .strip-inner { flex-wrap: wrap; }
       .strip-item { min-width: 50%; border-bottom: 1px solid var(--border); }
       .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
@@ -693,7 +684,6 @@
       <a href="#order" class="btn-main" data-en="Shop Now" data-lv="Apskatīt produktus" data-ru="Смотреть товары">Shop Now</a>
     </div>
   </div>
-  <div class="hero-right"></div>
 </section>
 
 <div class="strip">
