@@ -94,10 +94,10 @@
   .sun-wrap { width: min(320px, 60vw); margin: 0 auto; }
   .eyebrow { font-size: 0.75rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--olive-dk); margin: 1.5rem 0; }
   .principles {
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
     font-size: clamp(1.1rem, 2.6vw, 1.6rem); color: var(--maroon); line-height: 1.4;
-    letter-spacing: 0.02em; margin-top: 0.5rem; font-weight: 600;
+    letter-spacing: 0.02em; margin-top: 1rem; font-weight: 600;
   }
-  .hero-sub { max-width: 560px; margin: 2rem auto 0; font-size: 1.1rem; font-weight: 300; color: var(--ink-soft); line-height: 1.65; }
 
   .cards {
     position: relative; z-index: 5; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
@@ -201,9 +201,14 @@
 </nav>
 
 <section class="hero">
-  <p class="eyebrow" data-en="Naturally grown" data-lv="Dabiski audzēts" data-ru="Натурально выращено">Naturally grown</p>
-  <p class="principles" data-en="Simplicity · Openness · Minimalism · Simple things matter" data-lv="Vienkāršība · Atvērtība · Minimālisms · Vienkāršas lietas ir svarīgas" data-ru="Простота · Открытость · Минимализм · Простые вещи важны">Simplicity · Openness · Minimalism · Simple things matter</p>
-  <p class="hero-sub" data-en="Two things we believe in: real ingredients, and nothing else. Explore our cacao and wild rice — grown honestly, shipped from Riga." data-lv="Mēs ticam divām lietām: īstām sastāvdaļām un nekam citam. Iepazīstiet mūsu kakao un savvaļas rīsus — godīgi audzētus, sūtītus no Rīgas." data-ru="Мы верим в две вещи: настоящие ингредиенты и ничего лишнего. Познакомьтесь с нашим какао и диким рисом — честно выращенными, отправленными из Риги.">Two things we believe in: real ingredients, and nothing else. Explore our cacao and wild rice — grown honestly, shipped from Riga.</p>
+  <p class="eyebrow" data-en="Our philosophy" data-lv="Mūsu filozofija" data-ru="Наша философия">Our philosophy</p>
+  <div class="principles">
+    <span data-en="Simplicity" data-lv="Vienkāršība" data-ru="Простота">Simplicity</span>
+    <span data-en="Openness" data-lv="Atvērtība" data-ru="Открытость">Openness</span>
+    <span data-en="Minimalism" data-lv="Minimālisms" data-ru="Минимализм">Minimalism</span>
+    <span data-en="Simple things matter" data-lv="Vienkāršas lietas ir svarīgas" data-ru="Простые вещи важны">Simple things matter</span>
+    <span data-en="Less is more" data-lv="Mazāk ir vairāk" data-ru="Меньше — это больше">Less is more</span>
+  </div>
 </section>
 
 <div class="cards">
