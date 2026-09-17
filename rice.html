@@ -154,7 +154,24 @@
   .body-text { font-size: 0.95rem; color: var(--gray); line-height: 1.75; margin-bottom: 1.25rem; max-width: 480px; }
   .about-visual { background-image: url('rice-grains.jpg'); background-size: cover; background-position: center; min-height: 380px; }
 
-  .order { padding: 7rem 5rem; text-align: center; background: var(--dark); color: var(--white); }
+  .order {
+    padding: 7rem 5rem; text-align: center; color: var(--white);
+    background-image: url('rice-sack.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .order::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(30, 36, 20, 0.78);
+    z-index: 0;
+  }
+  .order > * {
+    position: relative;
+    z-index: 1;
+  }
   .order-tag { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--tan); margin-bottom: 1.25rem; }
   .order h2 { font-size: clamp(2.25rem, 3.5vw, 3.25rem); font-weight: 300; margin-bottom: 1rem; color: var(--white); }
   .order-sub { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 3.5rem; }
