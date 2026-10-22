@@ -655,9 +655,7 @@
     .om-box h3 { margin:0 0 0.4rem; font-size:1.05rem; }
     .om-row { display:flex; align-items:center; gap:0.5rem; margin:0.45rem 0; }
     .om-label { flex:0 0 5.2rem; color:#888; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.05em; }
-    .om-val { flex:1; font-weight:600; word-break:break-all; background:#f5f3ee; padding:0.35rem 0.5rem; border-radius:3px; -webkit-user-select:all; user-select:all; }
-    .om-copy { border:1px solid #3d2b1f; background:#fff; color:#3d2b1f; padding:0.3rem 0.7rem; cursor:pointer; font-size:0.78rem; border-radius:3px; }
-    .om-copy.done { background:#3d2b1f; color:#fff; }
+    .om-val { flex:1; font-weight:600; word-break:break-all; background:#f5f3ee; padding:0.35rem 0.5rem; border-radius:3px; -webkit-user-select:text; user-select:text; }
     .om-note { margin-top:1rem; padding-top:0.9rem; border-top:1px solid #e0e0d8; }
     .om-note div { margin:0.25rem 0; }
     .om-close { margin-top:1.1rem; width:100%; padding:0.7rem; border:0; background:#3d2b1f; color:#fff; cursor:pointer; font-size:0.9rem; border-radius:3px; }
@@ -961,13 +959,13 @@
     price = price || '€6';
     const big = (weight === '1kg');
     const T = {
-      en: { title:'Order', pay:'Please transfer ' + price + ' to:', iban:'IBAN', bic:'BIC', ref:'Reference', copy:'Copy', copied:'Copied ✓',
+      en: { title:'Order', pay:'Please transfer ' + price + ' to:', iban:'IBAN', bic:'BIC', ref:'Reference',
             ship: big ? 'Parcel locker delivery (Latvijas Pasts or DPD): free' : 'Parcel locker delivery: Latvijas Pasts +€1.70 · DPD +€2.00',
             pickup:'Self pickup: Brivibas 111, Riga', then:'Then email your delivery address to:', phone:'Phone', close:'Close' },
-      lv: { title:'Pasūtījums', pay:'Lūdzu pārskaitiet ' + price + ' uz:', iban:'IBAN', bic:'BIC', ref:'Mērķis', copy:'Kopēt', copied:'Nokopēts ✓',
+      lv: { title:'Pasūtījums', pay:'Lūdzu pārskaitiet ' + price + ' uz:', iban:'IBAN', bic:'BIC', ref:'Mērķis',
             ship: big ? 'Piegāde pakomātā (Latvijas Pasts vai DPD): bez maksas' : 'Piegāde pakomātā: Latvijas Pasts +€1.70 · DPD +€2.00',
             pickup:'Saņemšana uz vietas: Brīvības 111, Rīga', then:'Pēc tam nosūtiet piegādes adresi uz:', phone:'Tālr', close:'Aizvērt' },
-      ru: { title:'Заказ', pay:'Переведите ' + price + ':', iban:'IBAN', bic:'BIC', ref:'Назначение', copy:'Копировать', copied:'Скопировано ✓',
+      ru: { title:'Заказ', pay:'Переведите ' + price + ':', iban:'IBAN', bic:'BIC', ref:'Назначение',
             ship: big ? 'Доставка в почтомат (Latvijas Pasts или DPD): бесплатно' : 'Доставка в почтомат: Latvijas Pasts +€1.70 · DPD +€2.00',
             pickup:'Самовывоз: Brivibas 111, Рига', then:'Затем отправьте адрес доставки на:', phone:'Тел', close:'Закрыть' }
     };
@@ -980,9 +978,7 @@
       const row = document.createElement('div'); row.className = 'om-row';
       const l = document.createElement('span'); l.className = 'om-label'; l.textContent = r[0];
       const v = document.createElement('span'); v.className = 'om-val'; v.textContent = r[1];
-      const c = document.createElement('button'); c.className = 'om-copy'; c.type = 'button'; c.textContent = t.copy;
-      c.onclick = function(){ copyText(r[1], c, t); };
-      row.appendChild(l); row.appendChild(v); row.appendChild(c); box.appendChild(row);
+      row.appendChild(l); row.appendChild(v); box.appendChild(row);
     });
     const note = document.createElement('div'); note.className = 'om-note';
     [t.ship, t.pickup].forEach(function(x){ const d = document.createElement('div'); d.textContent = x; note.appendChild(d); });
@@ -994,11 +990,6 @@
     document.getElementById('orderModal').classList.add('open');
   }
   function closeOrder() { document.getElementById('orderModal').classList.remove('open'); }
-  function copyText(text, btn, t) {
-    function done() { const old = btn.textContent; btn.textContent = t.copied; btn.classList.add('done'); setTimeout(function(){ btn.textContent = t.copy; btn.classList.remove('done'); }, 1500); }
-    if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(done, function(){ fallback(); }); } else { fallback(); }
-    function fallback() { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch(e) {} document.body.removeChild(ta); }
-  }
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeOrder(); });
 </script>
 
