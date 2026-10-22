@@ -852,9 +852,9 @@
   </div>
 
   <div class="order-bank" style="text-align:center; margin-top:2rem; font-size:0.8rem; color:rgba(255,255,255,0.6);">
-    <div style="text-transform:uppercase; letter-spacing:0.12em; font-size:0.7rem; margin-bottom:0.4rem;" data-en="Parcel locker delivery" data-lv="Piegāde pakomātā" data-ru="Доставка в почтомат">Parcel locker delivery</div>
-    <div data-en="1 kg order: Latvijas Pasts or DPD locker — free" data-lv="1 kg pasūtījums: Latvijas Pasts vai DPD pakomāts — bez maksas" data-ru="Заказ 1 кг: почтомат Latvijas Pasts или DPD — бесплатно">1 kg order: Latvijas Pasts or DPD locker — free</div>
-    <div data-en="200g order: Latvijas Pasts locker +€1.70 · DPD locker +€2.00" data-lv="200g pasūtījums: Latvijas Pasts pakomāts +€1.70 · DPD pakomāts +€2.00" data-ru="Заказ 200г: почтомат Latvijas Pasts +€1.70 · DPD +€2.00">200g order: Latvijas Pasts locker +€1.70 · DPD locker +€2.00</div>
+    <div style="text-transform:uppercase; letter-spacing:0.12em; font-size:0.7rem; margin-bottom:0.4rem;" data-en="Parcel locker delivery" data-lv="Piegāde pakomātā" data-ru="Доставка в пакомат">Parcel locker delivery</div>
+    <div data-en="1 kg order: Latvijas Pasts or DPD locker — free" data-lv="1 kg pasūtījums: Latvijas Pasts vai DPD pakomāts — bez maksas" data-ru="Заказ 1 кг: пакомат Latvijas Pasts или DPD — бесплатно">1 kg order: Latvijas Pasts or DPD locker — free</div>
+    <div data-en="200g order: Latvijas Pasts locker +€1.70 · DPD locker +€2.00" data-lv="200g pasūtījums: Latvijas Pasts pakomāts +€1.70 · DPD pakomāts +€2.00" data-ru="Заказ 200г: пакомат Latvijas Pasts +€1.70 · DPD +€2.00">200g order: Latvijas Pasts locker +€1.70 · DPD locker +€2.00</div>
     <div data-en="Self pickup: Brivibas 111, Riga" data-lv="Saņemšana uz vietas: Brīvības 111, Rīga" data-ru="Самовывоз: Brivibas 111, Рига">Self pickup: Brivibas 111, Riga</div>
   </div>
 
@@ -964,7 +964,7 @@
     const ship = {
       en: (big ? 'Parcel locker delivery (Latvijas Pasts or DPD): free' : 'Parcel locker delivery: Latvijas Pasts +€1.70 · DPD +€2.00') + '\nSelf pickup: Brivibas 111, Riga',
       lv: (big ? 'Piegāde pakomātā (Latvijas Pasts vai DPD): bez maksas' : 'Piegāde pakomātā: Latvijas Pasts +€1.70 · DPD +€2.00') + '\nSaņemšana uz vietas: Brīvības 111, Rīga',
-      ru: (big ? 'Доставка в почтомат (Latvijas Pasts или DPD): бесплатно' : 'Доставка в почтомат: Latvijas Pasts +€1.70 · DPD +€2.00') + '\nСамовывоз: Brivibas 111, Рига'
+      ru: (big ? 'Доставка в пакомат (Latvijas Pasts или DPD): бесплатно' : 'Доставка в пакомат: Latvijas Pasts +€1.70 · DPD +€2.00') + '\nСамовывоз: Brivibas 111, Рига'
     };
     const msgs = {
       en: 'To order ' + ref + ' (' + price + '), please transfer ' + price + ' to:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nReference: ' + ref + '\n\n' + ship.en + '\n\nThen email your delivery address to:\nhippy24co@gmail.com\nPhone: +371 26300157',
