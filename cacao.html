@@ -658,6 +658,7 @@
     .om-val { flex:1; font-weight:600; word-break:break-all; background:#f5f3ee; padding:0.35rem 0.5rem; border-radius:3px; -webkit-user-select:text; user-select:text; }
     .om-note { margin-top:1rem; padding-top:0.9rem; border-top:1px solid #e0e0d8; }
     .om-note div { margin:0.25rem 0; }
+    .om-box, .om-box * { -webkit-user-select:text !important; user-select:text !important; -webkit-touch-callout:default; }
     .om-close { margin-top:1.1rem; width:100%; padding:0.7rem; border:0; background:#3d2b1f; color:#fff; cursor:pointer; font-size:0.9rem; border-radius:3px; }
   </style>
 </head>
@@ -915,7 +916,7 @@
   <span class="footer-right">VAT: LV40003555096 · © 2026</span>
 </footer>
 
-<div class="om-overlay" id="orderModal" onclick="if(event.target===this)closeOrder()">
+<div class="om-overlay" id="orderModal">
   <div class="om-box" id="orderModalBox"></div>
 </div>
 
@@ -989,6 +990,12 @@
     const x = document.createElement('button'); x.className = 'om-close'; x.type = 'button'; x.textContent = t.close; x.onclick = closeOrder; box.appendChild(x);
     document.getElementById('orderModal').classList.add('open');
   }
+  (function(){
+    var down = false, ov = document.getElementById('orderModal');
+    ov.addEventListener('mousedown', function(e){ down = (e.target === ov); });
+    ov.addEventListener('touchstart', function(e){ down = (e.target === ov); }, {passive:true});
+    ov.addEventListener('click', function(e){ if (down && e.target === ov) closeOrder(); down = false; });
+  })();
   function closeOrder() { document.getElementById('orderModal').classList.remove('open'); }
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeOrder(); });
 </script>
