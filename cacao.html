@@ -648,6 +648,19 @@
       .contact { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
       footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; text-align: center; }
     }
+
+    .om-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:10000; align-items:center; justify-content:center; padding:1rem; }
+    .om-overlay.open { display:flex; }
+    .om-box { background:#fff; color:#222; max-width:460px; width:100%; max-height:90vh; overflow:auto; padding:1.75rem 1.5rem; border-radius:6px; font-family:'Inter',sans-serif; font-size:0.92rem; line-height:1.5; -webkit-user-select:text; user-select:text; }
+    .om-box h3 { margin:0 0 0.4rem; font-size:1.05rem; }
+    .om-row { display:flex; align-items:center; gap:0.5rem; margin:0.45rem 0; }
+    .om-label { flex:0 0 5.2rem; color:#888; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.05em; }
+    .om-val { flex:1; font-weight:600; word-break:break-all; background:#f5f3ee; padding:0.35rem 0.5rem; border-radius:3px; -webkit-user-select:all; user-select:all; }
+    .om-copy { border:1px solid #3d2b1f; background:#fff; color:#3d2b1f; padding:0.3rem 0.7rem; cursor:pointer; font-size:0.78rem; border-radius:3px; }
+    .om-copy.done { background:#3d2b1f; color:#fff; }
+    .om-note { margin-top:1rem; padding-top:0.9rem; border-top:1px solid #e0e0d8; }
+    .om-note div { margin:0.25rem 0; }
+    .om-close { margin-top:1.1rem; width:100%; padding:0.7rem; border:0; background:#3d2b1f; color:#fff; cursor:pointer; font-size:0.9rem; border-radius:3px; }
   </style>
 </head>
 <body>
@@ -842,6 +855,7 @@
     <div style="text-transform:uppercase; letter-spacing:0.12em; font-size:0.7rem; margin-bottom:0.4rem;" data-en="Parcel locker delivery" data-lv="Piegāde pakomātā" data-ru="Доставка в почтомат">Parcel locker delivery</div>
     <div data-en="1 kg order: Latvijas Pasts or DPD locker — free" data-lv="1 kg pasūtījums: Latvijas Pasts vai DPD pakomāts — bez maksas" data-ru="Заказ 1 кг: почтомат Latvijas Pasts или DPD — бесплатно">1 kg order: Latvijas Pasts or DPD locker — free</div>
     <div data-en="200g order: Latvijas Pasts locker +€1.70 · DPD locker +€2.00" data-lv="200g pasūtījums: Latvijas Pasts pakomāts +€1.70 · DPD pakomāts +€2.00" data-ru="Заказ 200г: почтомат Latvijas Pasts +€1.70 · DPD +€2.00">200g order: Latvijas Pasts locker +€1.70 · DPD locker +€2.00</div>
+    <div data-en="Self pickup: Brivibas 111, Riga" data-lv="Saņemšana uz vietas: Brīvības 111, Rīga" data-ru="Самовывоз: Brivibas 111, Рига">Self pickup: Brivibas 111, Riga</div>
   </div>
 
   <p class="order-bank" style="text-align:center; margin-top:2rem;">
@@ -903,6 +917,10 @@
   <span class="footer-right">VAT: LV40003555096 · © 2026</span>
 </footer>
 
+<div class="om-overlay" id="orderModal" onclick="if(event.target===this)closeOrder()">
+  <div class="om-box" id="orderModalBox"></div>
+</div>
+
 <script>
   let currentLang = 'lv';
 
@@ -941,20 +959,47 @@
     product = product || 'Cacao Powder';
     weight = weight || '200g';
     price = price || '€6';
-    const ref = product;
     const big = (weight === '1kg');
-    const ship = {
-      en: big ? 'Parcel locker delivery (Latvijas Pasts or DPD): free' : 'Parcel locker delivery: Latvijas Pasts +€1.70 · DPD +€2.00',
-      lv: big ? 'Piegāde pakomātā (Latvijas Pasts vai DPD): bez maksas' : 'Piegāde pakomātā: Latvijas Pasts +€1.70 · DPD +€2.00',
-      ru: big ? 'Доставка в почтомат (Latvijas Pasts или DPD): бесплатно' : 'Доставка в почтомат: Latvijas Pasts +€1.70 · DPD +€2.00'
+    const T = {
+      en: { title:'Order', pay:'Please transfer ' + price + ' to:', iban:'IBAN', bic:'BIC', ref:'Reference', copy:'Copy', copied:'Copied ✓',
+            ship: big ? 'Parcel locker delivery (Latvijas Pasts or DPD): free' : 'Parcel locker delivery: Latvijas Pasts +€1.70 · DPD +€2.00',
+            pickup:'Self pickup: Brivibas 111, Riga', then:'Then email your delivery address to:', phone:'Phone', close:'Close' },
+      lv: { title:'Pasūtījums', pay:'Lūdzu pārskaitiet ' + price + ' uz:', iban:'IBAN', bic:'BIC', ref:'Mērķis', copy:'Kopēt', copied:'Nokopēts ✓',
+            ship: big ? 'Piegāde pakomātā (Latvijas Pasts vai DPD): bez maksas' : 'Piegāde pakomātā: Latvijas Pasts +€1.70 · DPD +€2.00',
+            pickup:'Saņemšana uz vietas: Brīvības 111, Rīga', then:'Pēc tam nosūtiet piegādes adresi uz:', phone:'Tālr', close:'Aizvērt' },
+      ru: { title:'Заказ', pay:'Переведите ' + price + ':', iban:'IBAN', bic:'BIC', ref:'Назначение', copy:'Копировать', copied:'Скопировано ✓',
+            ship: big ? 'Доставка в почтомат (Latvijas Pasts или DPD): бесплатно' : 'Доставка в почтомат: Latvijas Pasts +€1.70 · DPD +€2.00',
+            pickup:'Самовывоз: Brivibas 111, Рига', then:'Затем отправьте адрес доставки на:', phone:'Тел', close:'Закрыть' }
     };
-    const msgs = {
-      en: 'To order ' + ref + ' (' + price + '), please transfer ' + price + ' to:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nReference: ' + ref + '\n\n' + ship.en + '\n\nThen email your delivery address to:\nhippy24co@gmail.com\nPhone: +371 26300157',
-      lv: 'Lai pasūtītu ' + ref + ' (' + price + '), pārskaitiet ' + price + ' uz:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nMaksājuma mērķis: ' + ref + '\n\n' + ship.lv + '\n\nPēc tam nosūtiet piegādes adresi uz:\nhippy24co@gmail.com\nTālr: +371 26300157',
-      ru: 'Для заказа ' + ref + ' (' + price + '), переведите ' + price + ':\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nНазначение: ' + ref + '\n\n' + ship.ru + '\n\nЗатем отправьте адрес доставки на:\nhippy24co@gmail.com\nТел: +371 26300157'
-    };
-    alert(msgs[currentLang] || msgs['lv']);
+    const t = T[currentLang] || T.lv;
+    const box = document.getElementById('orderModalBox');
+    box.innerHTML = '';
+    const h = document.createElement('h3'); h.textContent = t.title + ': ' + product + ' (' + price + ')'; box.appendChild(h);
+    const p = document.createElement('div'); p.textContent = t.pay; box.appendChild(p);
+    [[t.iban,'LT92 3250 0193 5744 2476'],[t.bic,'REVOLT21'],[t.ref,product]].forEach(function(r){
+      const row = document.createElement('div'); row.className = 'om-row';
+      const l = document.createElement('span'); l.className = 'om-label'; l.textContent = r[0];
+      const v = document.createElement('span'); v.className = 'om-val'; v.textContent = r[1];
+      const c = document.createElement('button'); c.className = 'om-copy'; c.type = 'button'; c.textContent = t.copy;
+      c.onclick = function(){ copyText(r[1], c, t); };
+      row.appendChild(l); row.appendChild(v); row.appendChild(c); box.appendChild(row);
+    });
+    const note = document.createElement('div'); note.className = 'om-note';
+    [t.ship, t.pickup].forEach(function(x){ const d = document.createElement('div'); d.textContent = x; note.appendChild(d); });
+    const d2 = document.createElement('div'); d2.style.marginTop = '0.7rem'; d2.textContent = t.then; note.appendChild(d2);
+    const d3 = document.createElement('div'); d3.innerHTML = '<a href="mailto:hippy24co@gmail.com">hippy24co@gmail.com</a>'; note.appendChild(d3);
+    const d4 = document.createElement('div'); d4.innerHTML = t.phone + ': <a href="tel:+37126300157">+371 26300157</a>'; note.appendChild(d4);
+    box.appendChild(note);
+    const x = document.createElement('button'); x.className = 'om-close'; x.type = 'button'; x.textContent = t.close; x.onclick = closeOrder; box.appendChild(x);
+    document.getElementById('orderModal').classList.add('open');
   }
+  function closeOrder() { document.getElementById('orderModal').classList.remove('open'); }
+  function copyText(text, btn, t) {
+    function done() { const old = btn.textContent; btn.textContent = t.copied; btn.classList.add('done'); setTimeout(function(){ btn.textContent = t.copy; btn.classList.remove('done'); }, 1500); }
+    if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(done, function(){ fallback(); }); } else { fallback(); }
+    function fallback() { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch(e) {} document.body.removeChild(ta); }
+  }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeOrder(); });
 </script>
 
 </body>
