@@ -663,6 +663,8 @@
     .om-note { margin-top:1rem; padding-top:0.9rem; border-top:1px solid #e0e0d8; }
     .om-note div { margin:0.25rem 0; }
     .om-box, .om-box * { -webkit-user-select:text !important; user-select:text !important; -webkit-touch-callout:default; }
+    .om-phone { margin-top:0.25rem; display:flex; align-items:center; flex-wrap:wrap; }
+    .om-phone a:not(.wa-link) { color:inherit; text-decoration:none; margin-left:0.3rem; }
     .om-close { margin-top:1.1rem; width:100%; padding:0.7rem; border:0; background:#3d2b1f; color:#fff; cursor:pointer; font-size:0.9rem; border-radius:3px; }
   </style>
 </head>
@@ -958,6 +960,23 @@
     setLang(saved, true);
   })();
 
+  function addOrderPhone(box) {
+    var labels = { en: 'Phone', lv: 'Tālr.', ru: 'Тел.' };
+    var row = document.createElement('div');
+    row.className = 'om-phone';
+    row.appendChild(document.createTextNode((labels[currentLang] || labels.lv) + ': '));
+    var tel = document.createElement('a');
+    tel.href = 'tel:+37123334707'; tel.textContent = '+371 23334707';
+    row.appendChild(tel);
+    var wa = document.createElement('a');
+    wa.className = 'wa-link'; wa.href = 'https://wa.me/37123334707';
+    wa.target = '_blank'; wa.rel = 'noopener';
+    wa.setAttribute('aria-label', 'WhatsApp'); wa.title = 'WhatsApp';
+    wa.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/><path d="M12 2c3.5 3 5.5 6.5 5.5 10s-2 7-5.5 10M12 2c-3.5 3-5.5 6.5-5.5 10s2 7 5.5 10"/><path d="M4.5 7.5h15M4.5 16.5h15"/></svg>';
+    row.appendChild(wa);
+    box.appendChild(row);
+  }
+
   function showOrder(product, weight, price) {
     product = product || 'Cacao Powder';
     weight = weight || '200g';
@@ -970,9 +989,9 @@
       ru: (big ? 'Доставка в пакомат (Latvijas Pasts или DPD): бесплатно' : 'Доставка в пакомат: Latvijas Pasts +€1.70 · DPD +€2.00') + '\nСамовывоз: Brivibas 111, Рига'
     };
     const msgs = {
-      en: 'To order ' + ref + ' (' + price + '), please transfer ' + price + ' to:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nReference: ' + ref + '\n\n' + ship.en + '\n\nThen email your delivery address to:\nhippy24co@gmail.com\nPhone: +371 23334707',
-      lv: 'Lai pasūtītu ' + ref + ' (' + price + '), pārskaitiet ' + price + ' uz:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nMaksājuma mērķis: ' + ref + '\n\n' + ship.lv + '\n\nPēc tam nosūtiet piegādes adresi uz:\nhippy24co@gmail.com\nTālr: +371 23334707',
-      ru: 'Для заказа ' + ref + ' (' + price + '), переведите ' + price + ':\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nНазначение: ' + ref + '\n\n' + ship.ru + '\n\nЗатем отправьте адрес доставки на:\nhippy24co@gmail.com\nТел: +371 23334707'
+      en: 'To order ' + ref + ' (' + price + '), please transfer ' + price + ' to:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nReference: ' + ref + '\n\n' + ship.en + '\n\nThen email your delivery address to:\nhippy24co@gmail.com',
+      lv: 'Lai pasūtītu ' + ref + ' (' + price + '), pārskaitiet ' + price + ' uz:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nMaksājuma mērķis: ' + ref + '\n\n' + ship.lv + '\n\nPēc tam nosūtiet piegādes adresi uz:\nhippy24co@gmail.com',
+      ru: 'Для заказа ' + ref + ' (' + price + '), переведите ' + price + ':\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nНазначение: ' + ref + '\n\n' + ship.ru + '\n\nЗатем отправьте адрес доставки на:\nhippy24co@gmail.com'
     };
     const box = document.getElementById('orderModalBox');
     box.innerHTML = '';
@@ -980,6 +999,7 @@
     txt.className = 'om-text';
     txt.textContent = msgs[currentLang] || msgs.lv;
     box.appendChild(txt);
+    addOrderPhone(box);
     const ok = document.createElement('button');
     ok.className = 'om-close'; ok.type = 'button'; ok.textContent = 'OK'; ok.onclick = closeOrder;
     box.appendChild(ok);
