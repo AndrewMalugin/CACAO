@@ -341,6 +341,13 @@
     </div>
   </div>
 
+  <div class="order-bank" style="text-align:center; margin-top:2rem; font-size:0.8rem; color:rgba(255,255,255,0.6);">
+    <div style="text-transform:uppercase; letter-spacing:0.12em; font-size:0.7rem; margin-bottom:0.4rem;" data-en="Parcel locker delivery" data-lv="Piegāde pakomātā" data-ru="Доставка в пакомат">Parcel locker delivery</div>
+    <div data-en="1 kg order: Latvijas Pasts or DPD locker — free" data-lv="1 kg pasūtījums: Latvijas Pasts vai DPD pakomāts — bez maksas" data-ru="Заказ 1 кг: пакомат Latvijas Pasts или DPD — бесплатно">1 kg order: Latvijas Pasts or DPD locker — free</div>
+    <div data-en="200g order: Latvijas Pasts locker +€1.70 · DPD locker +€2.00" data-lv="200g pasūtījums: Latvijas Pasts pakomāts +€1.70 · DPD pakomāts +€2.00" data-ru="Заказ 200г: пакомат Latvijas Pasts +€1.70 · DPD +€2.00">200g order: Latvijas Pasts locker +€1.70 · DPD locker +€2.00</div>
+    <div data-en="Self pickup: Brivibas 111, Riga" data-lv="Saņemšana uz vietas: Brīvības 111, Rīga" data-ru="Самовывоз: Brivibas 111, Рига">Self pickup: Brivibas 111, Riga</div>
+  </div>
+
   <p style="text-align:center; margin-top:2rem; font-size:0.85rem; color:rgba(255,255,255,0.6);">
     <span data-en="Questions or want to be notified when it's available?" data-lv="Jautājumi vai vēlaties saņemt paziņojumu, kad tas būs pieejams?" data-ru="Есть вопросы или хотите узнать, когда товар появится в наличии?">Questions or want to be notified when it's available?</span>
     <a href="mailto:hippy24co@gmail.com" style="color:var(--tan);">hippy24co@gmail.com</a>
@@ -439,10 +446,16 @@
     weight = weight || '200g';
     price = price || '€6';
     const ref = product;
+    const big = (weight === '1kg');
+    const ship = {
+      en: (big ? 'Parcel locker delivery (Latvijas Pasts or DPD): free' : 'Parcel locker delivery: Latvijas Pasts +€1.70 · DPD +€2.00') + '\nSelf pickup: Brivibas 111, Riga',
+      lv: (big ? 'Piegāde pakomātā (Latvijas Pasts vai DPD): bez maksas' : 'Piegāde pakomātā: Latvijas Pasts +€1.70 · DPD +€2.00') + '\nSaņemšana uz vietas: Brīvības 111, Rīga',
+      ru: (big ? 'Доставка в пакомат (Latvijas Pasts или DPD): бесплатно' : 'Доставка в пакомат: Latvijas Pasts +€1.70 · DPD +€2.00') + '\nСамовывоз: Brivibas 111, Рига'
+    };
     const msgs = {
-      en: 'To order ' + ref + ' (' + price + '), please transfer ' + price + ' to:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nReference: ' + ref + '\n\nThen email your delivery address to:\nhippy24co@gmail.com',
-      lv: 'Lai pasūtītu ' + ref + ' (' + price + '), pārskaitiet ' + price + ' uz:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nMaksājuma mērķis: ' + ref + '\n\nPēc tam nosūtiet piegādes adresi uz:\nhippy24co@gmail.com',
-      ru: 'Для заказа ' + ref + ' (' + price + '), переведите ' + price + ':\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nНазначение: ' + ref + '\n\nЗатем отправьте адрес доставки на:\nhippy24co@gmail.com'
+      en: 'To order ' + ref + ' (' + price + '), please transfer ' + price + ' to:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nReference: ' + ref + '\n\n' + ship.en + '\n\nThen email your delivery address to:\nhippy24co@gmail.com',
+      lv: 'Lai pasūtītu ' + ref + ' (' + price + '), pārskaitiet ' + price + ' uz:\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nMaksājuma mērķis: ' + ref + '\n\n' + ship.lv + '\n\nPēc tam nosūtiet piegādes adresi uz:\nhippy24co@gmail.com',
+      ru: 'Для заказа ' + ref + ' (' + price + '), переведите ' + price + ':\n\nIBAN: LT92 3250 0193 5744 2476\nBIC: REVOLT21\nНазначение: ' + ref + '\n\n' + ship.ru + '\n\nЗатем отправьте адрес доставки на:\nhippy24co@gmail.com'
     };
     const box = document.getElementById('orderModalBox');
     box.innerHTML = '';
