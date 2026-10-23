@@ -227,6 +227,7 @@
     .om-close { margin-top:1.1rem; width:100%; padding:0.7rem; border:0; background:#3d2b1f; color:#fff; cursor:pointer; font-size:0.9rem; border-radius:3px; }
   .wa-link { display:inline-flex; align-items:center; margin-left:.4rem; color:#25D366 !important; text-decoration:none !important; vertical-align:middle; line-height:1; }
   .wa-link:hover { color:#1ebe5b !important; }
+  .or-word { margin-left:.4rem; }
   .wa-link svg { width:20px; height:20px; flex:none; }
 </style>
 </head>
@@ -410,12 +411,16 @@
 
   function addOrderPhone(box) {
     var labels = { en: 'Phone', lv: 'Tālr.', ru: 'Тел.' };
+    var orw = { en: 'or', lv: 'vai', ru: 'или' };
     var row = document.createElement('div');
     row.className = 'om-phone';
     row.appendChild(document.createTextNode((labels[currentLang] || labels.lv) + ': '));
     var tel = document.createElement('a');
     tel.href = 'tel:+37123334707'; tel.textContent = '+371 23334707';
     row.appendChild(tel);
+    var or = document.createElement('span');
+    or.className = 'or-word'; or.textContent = orw[currentLang] || orw.lv;
+    row.appendChild(or);
     var wa = document.createElement('a');
     wa.className = 'wa-link'; wa.href = 'https://wa.me/37123334707';
     wa.target = '_blank'; wa.rel = 'noopener';
